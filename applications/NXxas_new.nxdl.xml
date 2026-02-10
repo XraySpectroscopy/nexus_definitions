@@ -46,13 +46,13 @@
             </enumeration>
         </field>
         <choice name="mode">
-            <group type="NXtrans">
+            <group type="NXtransmission">
                 <doc>Transmission</doc>
             </group>
-            <group type="NXtfy">
+            <group type="NXtotal_fluorescence_yield">
                 <doc>Total fluorescence yield (TFY)</doc>
             </group>
-            <group type="NXpfy">
+            <group type="NXpartial_fluorescence_yield">
                 <doc>Partial fluorescence yield (PFY)</doc>
             </group>
         </choice>

@@ -21,8 +21,8 @@
 #
 # For further information, see http://www.nexusformat.org
 -->
-<definition name="NXpfy" extends="NXobject" type="group" category="base"
+<definition name="NXtotal_fluorescence_yield" extends="NXobject" type="group" category="application"
     xmlns="http://definition.nexusformat.org/nxdl/3.1"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://definition.nexusformat.org/nxdl/3.1 ../nxdl.xsd">
-    <doc>Partial fluorescence yield (PFY) mode</doc>
+    <doc>Total fluorescence yield (TFY) mode</doc>
 </definition>
