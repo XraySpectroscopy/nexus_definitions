@@ -45,9 +45,17 @@
                 <item value="NXxas_new"></item>
             </enumeration>
         </field>
-        <group type="NXxas_mode" name="mode">
-            <doc></doc>
-        </group>
+        <choice name="mode">
+            <group type="NXtransmission">
+                <doc>Transmission</doc>
+            </group>
+            <group type="NXtotal_fluorescence_yield">
+                <doc>Total fluorescence yield (TFY)</doc>
+            </group>
+            <group type="NXpartial_fluorescence_yield">
+                <doc>Partial fluorescence yield (PFY)</doc>
+            </group>
+        </choice>
         <group type="NXelement" name="element">
             <doc>Excited element</doc>
         </group>
