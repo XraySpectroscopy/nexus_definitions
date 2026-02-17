@@ -3,7 +3,7 @@
 <!--
 # NeXus - Neutron and X-ray Common Data Format
 # 
-# Copyright (C) 2008-2022 NeXus International Advisory Committee (NIAC)
+# Copyright (C) 2008-2026 NeXus International Advisory Committee (NIAC)
 # 
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -36,7 +36,7 @@
         </symbol>
     </symbols>
     <doc>
-      This is an application definition for X-ray absorption spectroscopy. 
+      This is a generic application definition for X-ray absorption spectroscopy. Specialized definitions are available for different acquisition modes.
     </doc>
     <group type="NXentry">
         <field name="definition">
@@ -55,19 +55,25 @@
             <doc>Specify if the data commes from a calculation</doc>
         </field>
         <field name="energy" type="NX_FLOAT" units="NX_ENERGY">
-            <doc>TODO</doc>
+            <doc>
+                The energy axis of the spectrum.
+            </doc>
             <dimensions rank="1">
                 <dim index="1" value="nEnergy" />
             </dimensions>
         </field>
         <field name="intensity" type="NX_FLOAT" units="NX_ANY">
-            <doc>TODO</doc>
+            <doc>
+                The intensity of the spectrum. The precise definition of what is meant by intensity depends on the acquisition mode, and will be specified by each subclass application definition.
+            </doc>
             <dimensions rank="1">
                 <dim index="1" value="nEnergy" />
             </dimensions>
         </field>
         <field name="intensity_errors" type="NX_FLOAT" units="NX_ANY">
-            <doc>TODO</doc>
+            <doc>
+                The errors associated with the intensity of the spectrum.
+            </doc>
             <dimensions rank="1">
                 <dim index="1" value="nEnergy" />
             </dimensions>
