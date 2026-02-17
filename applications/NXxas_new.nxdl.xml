@@ -45,9 +45,6 @@
                 <item value="NXxas_new"></item>
             </enumeration>
         </field>
-        <group type="NXxas_mode" name="mode">
-            <doc></doc>
-        </group>
         <group type="NXelement" name="element">
             <doc>Excited element</doc>
         </group>
