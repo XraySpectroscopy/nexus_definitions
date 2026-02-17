@@ -25,7 +25,7 @@
     xmlns="http://definition.nexusformat.org/nxdl/3.1"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://definition.nexusformat.org/nxdl/3.1 ../nxdl.xsd ">
     <doc>
-      In transmission, the absorption coefficient :math:`\mu(E)` given by the
+      In transmission, the absorption coefficient :math:`\mu(E)` is given by the
       Beer-Lambert law:
       
       .. math:: \mu(E)t = -\ln(I/I_0) 
@@ -34,10 +34,10 @@
       the intensity of the incident beam, and :math:`t` is the thickness of the
       sample.
       
-      In many experimental setups, a third detector is placed downstream of the
-      main sample and a secondary reference material (typically a high-purity
-      metal foil) to record :math:`I_{ref}`, the reference intensity, which is
-      used to correct for beam fluctuations.
+      In many experimental setups, a third detector is can be placed downstream
+      of the main sample and a secondary reference material (typically a
+      high-purity metal foil) to record :math:`I_{ref}`, the reference
+      intensity, which is used to correct for beam fluctuations.
     </doc>
     <group type="NXentry">
         <field name="definition">
