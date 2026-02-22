@@ -21,29 +21,24 @@
 #
 # For further information, see http://www.nexusformat.org
 -->
-<definition name="NXxas_transmission" extends="NXxas_new" type="group" category="application"
+<definition name="NXxas_tfy" extends="NXxas_new" type="group" category="application"
     xmlns="http://definition.nexusformat.org/nxdl/3.1"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://definition.nexusformat.org/nxdl/3.1 ../nxdl.xsd ">
     <doc>
-      In transmission, the absorption coefficient :math:`\mu(E)` is given by the
-      Beer-Lambert law:
+      In total fluorescence yield (TFY), the absorption coefficient :math:`\mu(E)` is
+      proportional to the ratio of the intensity of the emitted fluorescence
+      :math:`I_f` and the incident beam :math:`I_0`:
       
-      .. math:: \mu(E)t = -\ln(I/I_0) 
+      .. math:: \mu(E) \propto I_f/I_0
       
-      where :math:`I` is the intensity of the transmitted beam, :math:`I_0` is
-      the intensity of the incident beam, and :math:`t` is the thickness of the
-      sample.
-      
-      In many experimental setups, a third detector is can be placed downstream
-      of the main sample and a secondary reference material (typically a
-      high-purity metal foil) to record :math:`I_{ref}`, the reference
-      intensity, which is used to correct for beam fluctuations.
+      where :math:`I_f` is the intensity of the fluorescence emission, and :math:`I_0` is
+      the intensity of the incident beam.
     </doc>
     <group type="NXentry">
         <field name="definition">
             <doc> Official NeXus NXDL schema to which this file conforms. </doc>
             <enumeration>
-                <item value="NXxas_transmission"/>
+                <item value="NXxas_tfy"/>
             </enumeration>
         </field>
         <field name="intensity" type="NX_FLOAT" units="NX_ANY">
@@ -56,23 +51,15 @@
         </field>
         <field name="i0" type="NX_FLOAT" units="NX_ANY" optional="true">
             <doc>
-                The intensity of the incident beam, before the sample.
+                The intensity of the incident beam.
             </doc>
             <dimensions rank="1">
                 <dim index="1" value="nEnergy" />
             </dimensions>
         </field>
-        <field name="i" type="NX_FLOAT" units="NX_ANY" optional="true">
+        <field name="if" type="NX_FLOAT" units="NX_ANY" optional="true">
             <doc>
-                The intensity of the transmitted beam, after the sample.
-            </doc>
-            <dimensions rank="1">
-                <dim index="1" value="nEnergy" />
-            </dimensions>
-        </field>
-        <field name="iref" type="NX_FLOAT" units="NX_ANY" optional="true">
-            <doc>
-                The intensity of the reference sample.
+                The intensity of the total fluorescence emission.
             </doc>
             <dimensions rank="1">
                 <dim index="1" value="nEnergy" />
