@@ -24,10 +24,18 @@
 <definition name="NXedge" type="group" extends="NXobject" category="base"
   xmlns="http://definition.nexusformat.org/nxdl/3.1"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://definition.nexusformat.org/nxdl/3.1 ../nxdl.xsd">
-  <doc>Absorption edge</doc>
-  <field name="name" type="NX_CHAR" minOccurs="1" maxOccurs="1">
+  <doc>
+    An absorption edge is a sharp discontinuity in the X-ray absorption spectrum
+    of an element that occurs when the incident photon energy equals the binding
+    energy of a core electron, enabling photoionization of that shell. 
+  </doc>
+  <field name="name" type="NX_CHAR" minOccurs="1" maxOccurs="unbounded">
     <doc>
-        Name of the edge
+        Name of the absorption edge according to the `IUPAC notation`_. Each
+        edge is labelled according to the shell from which the electron is
+        ejected.
+
+        .. _IUPAC notation: https://doi.org/10.1002/xrs.1300200308
     </doc>
     <enumeration>
       <item value="K"></item>
@@ -49,9 +57,15 @@
       <item value="O1"></item>
       <item value="O2"></item>
       <item value="O3"></item>
+      <item value="O4"></item>
+      <item value="O5"></item>
+      <item value="O6"></item>
+      <item value="O7"></item>
       <item value="P1"></item>
       <item value="P2"></item>
       <item value="P3"></item>
+      <item value="P4"></item>
+      <item value="P5"></item>
     </enumeration>
 
   </field>
