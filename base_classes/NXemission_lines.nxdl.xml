@@ -50,13 +50,21 @@
          * - K-M3
            - Kβ1
          * - K-N3
-           - Kβ2
+           - Kβ2'
+         * - K-N2
+           - Kβ2''
          * - K-M2
            - Kβ3
          * - K-N5
-           - Kβ4
+           - Kβ4'
+         * - K-N4
+           - Kβ4''
+         * - K-N4
+           - Kβ4x
          * - K-M5
-           - Kβ5
+           - Kβ5'
+         * - K-M4
+           - Kβ5''
          * - L3-M5
            - Lα1
          * - L3-M4
@@ -69,12 +77,14 @@
            - Lβ3
          * - L1-M2
            - Lβ4
-         * - L3-O45
+         * - L3-O4,5
            - Lβ5
          * - L3-N1
            - Lβ6
          * - L3-O1
            - Lβ7
+         * - L3-N6,7
+           - Lβ7'
          * - L1-M5
            - Lβ9
          * - L1-M4
@@ -91,14 +101,16 @@
            - Lγ3
          * - L1-O3
            - Lγ4
+         * - L1-O2
+           - Lγ4'
          * - L2-N1
            - Lγ5
          * - L2-O4
            - Lγ6
          * - L2-O1
            - Lγ8
-         * - L2-M1
-           - Lε
+         * - L2-N6,7
+           - Lγ8'
          * - L2-M1
            - Lη
          * - L3-M1
@@ -107,10 +119,10 @@
            - Ls
          * - L3-M2
            - Lt
-         * - L3-N6
+         * - L3-N6,7
            - Lu
-         * - L2-N6
-           - Lν
+         * - L2-N6,7
+           - Lv
          * - M5-N7
            - Mα1
          * - M5-N6
@@ -119,6 +131,8 @@
            - Mβ
          * - M3-N5
            - Mγ
+         * - M4,5-N2,3
+           - Mζ
 
       .. _IUPAC notation: https://doi.org/10.1002/xrs.1300200308
     </doc>
@@ -165,19 +179,19 @@
       <item value="L1-N4"></item>
       <item value="L1-N5"></item>
       <item value="L1-N6"></item>
-      <item value="L1-N67"></item>
+      <item value="L1-N6,7"></item>
       <item value="L1-N7"></item>
       <item value="L1-O1"></item>
       <item value="L1-O2"></item>
       <item value="L1-O3"></item>
       <item value="L1-O4"></item>
-      <item value="L1-O45"></item>
+      <item value="L1-O4,5"></item>
       <item value="L1-O5"></item>
       <item value="L1-O6"></item>
       <item value="L1-O7"></item>
       <item value="L1-P1"></item>
       <item value="L1-P2"></item>
-      <item value="L1-P23"></item>
+      <item value="L1-P2,3"></item>
       <item value="L1-P3"></item>
       <item value="L1-P4"></item>
       <item value="L1-P5"></item>
@@ -193,6 +207,7 @@
       <item value="L2-N4"></item>
       <item value="L2-N5"></item>
       <item value="L2-N6"></item>
+      <item value="L2-N6,7"></item>
       <item value="L2-N7"></item>
       <item value="L2-O1"></item>
       <item value="L2-O2"></item>
@@ -203,7 +218,7 @@
       <item value="L2-O7"></item>
       <item value="L2-P1"></item>
       <item value="L2-P2"></item>
-      <item value="L2-P23"></item>
+      <item value="L2-P2,3"></item>
       <item value="L2-P3"></item>
       <item value="L2-P4"></item>
       <item value="L2-P5"></item>
@@ -219,21 +234,22 @@
       <item value="L3-N4"></item>
       <item value="L3-N5"></item>
       <item value="L3-N6"></item>
+      <item value="L3-N6,7"></item>
       <item value="L3-N7"></item>
       <item value="L3-O1"></item>
       <item value="L3-O2"></item>
       <item value="L3-O3"></item>
       <item value="L3-O4"></item>
-      <item value="L3-O45"></item>
+      <item value="L3-O4,5"></item>
       <item value="L3-O5"></item>
       <item value="L3-O6"></item>
       <item value="L3-O7"></item>
       <item value="L3-P1"></item>
       <item value="L3-P2"></item>
-      <item value="L3-P23"></item>
+      <item value="L3-P2,3"></item>
       <item value="L3-P3"></item>
       <item value="L3-P4"></item>
-      <item value="L3-P45"></item>
+      <item value="L3-P4,5"></item>
       <item value="L3-P5"></item>
       <item value="L3-Q1"></item>
       <item value="M1-M2"></item>
@@ -342,6 +358,7 @@
       <item value="M5-P3"></item>
       <item value="M5-P4"></item>
       <item value="M5-P5"></item>
+      <item value="M4,5-N2,3"></item>
       <item value="N1-N2"></item>
       <item value="N1-N3"></item>
       <item value="N1-N4"></item>
@@ -511,10 +528,14 @@
       <item value="Kα2"></item>
       <item value="Kα3"></item>
       <item value="Kβ1"></item>
-      <item value="Kβ2"></item>
+      <item value="Kβ2'"></item>
+      <item value="Kβ2''"></item>
       <item value="Kβ3"></item>
-      <item value="Kβ4"></item>
-      <item value="Kβ5"></item>
+      <item value="Kβ4'"></item>
+      <item value="Kβ4''"></item>
+      <item value="Kβ4x"></item>
+      <item value="Kβ5'"></item>
+      <item value="Kβ5''"></item>
       <item value="Lα1"></item>
       <item value="Lα2"></item>
       <item value="Lβ1"></item>
@@ -524,6 +545,7 @@
       <item value="Lβ5"></item>
       <item value="Lβ6"></item>
       <item value="Lβ7"></item>
+      <item value="Lβ7'"></item>
       <item value="Lβ9"></item>
       <item value="Lβ10"></item>
       <item value="Lβ15"></item>
@@ -532,29 +554,35 @@
       <item value="Lγ2"></item>
       <item value="Lγ3"></item>
       <item value="Lγ4"></item>
+      <item value="Lγ4'"></item>
       <item value="Lγ5"></item>
       <item value="Lγ6"></item>
       <item value="Lγ8"></item>
-      <item value="Lε"></item>
+      <item value="Lγ8'"></item>
       <item value="Lη"></item>
       <item value="Ll"></item>
       <item value="Ls"></item>
       <item value="Lt"></item>
       <item value="Lu"></item>
-      <item value="Lν"></item>
+      <item value="Lv"></item>
       <item value="Mα1"></item>
       <item value="Mα2"></item>
       <item value="Mβ"></item>
       <item value="Mγ"></item>
+      <item value="Mζ"></item>
       <!-- Siegbahn notation (LaTeX) -->
       <item value="K\alpha_1"></item>
       <item value="K\alpha_2"></item>
       <item value="K\alpha_3"></item>
       <item value="K\beta_1"></item>
-      <item value="K\beta_2"></item>
+      <item value="K\beta_2'"></item>
+      <item value="K\beta_2''"></item>
       <item value="K\beta_3"></item>
-      <item value="K\beta_4"></item>
-      <item value="K\beta_5"></item>
+      <item value="K\beta_4'"></item>
+      <item value="K\beta_4''"></item>
+      <item value="K\beta_{4x}"></item>
+      <item value="K\beta_5'"></item>
+      <item value="K\beta_5''"></item>
       <item value="L\alpha_1"></item>
       <item value="L\alpha_2"></item>
       <item value="L\beta_1"></item>
@@ -564,6 +592,7 @@
       <item value="L\beta_5"></item>
       <item value="L\beta_6"></item>
       <item value="L\beta_7"></item>
+      <item value="L\beta_7'"></item>
       <item value="L\beta_9"></item>
       <item value="L\beta_{10}"></item>
       <item value="L\beta_{15}"></item>
@@ -572,20 +601,22 @@
       <item value="L\gamma_2"></item>
       <item value="L\gamma_3"></item>
       <item value="L\gamma_4"></item>
+      <item value="L\gamma_4'"></item>
       <item value="L\gamma_5"></item>
       <item value="L\gamma_6"></item>
       <item value="L\gamma_8"></item>
-      <item value="L\epsilon"></item>
+      <item value="L\gamma_8'"></item>
       <item value="L\eta"></item>
       <item value="Ll"></item>
       <item value="Ls"></item>
       <item value="Lt"></item>
       <item value="Lu"></item>
-      <item value="L\nu"></item>
+      <item value="Lv"></item>
       <item value="M\alpha_1"></item>
       <item value="M\alpha_2"></item>
       <item value="M\beta"></item>
       <item value="M\gamma"></item>
+      <item value="M\zeta"></item>
     </enumeration>
   </field>
 </definition>
