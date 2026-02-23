@@ -31,8 +31,8 @@
   <field name="name" type="NX_CHAR" minOccurs="1" maxOccurs="unbounded">
     <doc>
       The emission line names, either in `IUPAC notation`_, i.e. initial
-      and final edge separated by a hyphen (e.g. ``K-L3``), or in Siegbahn notation
-      using Unicode (e.g. ``Kα1``) or LaTeX (e.g. ``K\alpha_1``).
+      and final edge separated by a hyphen (e.g. K-L3), or in Siegbahn notation
+      using Unicode (e.g. Kα1) or LaTeX (e.g. K\alpha_1).
 
       Correspondence between IUPAC and Siegbahn notations:
 
