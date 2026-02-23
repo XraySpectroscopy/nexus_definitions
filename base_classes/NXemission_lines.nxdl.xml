@@ -24,11 +24,101 @@
 <definition name="NXemission_lines" type="group" extends="NXobject" category="base"
   xmlns="http://definition.nexusformat.org/nxdl/3.1"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://definition.nexusformat.org/nxdl/3.1 ../nxdl.xsd">
-  <doc>Emission lines</doc>
-  <field name="name" type="NX_CHAR">
+  <doc>
+    Emission lines are spectral lines with discrete frequencies that are
+    characteristic of the emitting atom.
+  </doc>
+  <field name="name" type="NX_CHAR" minOccurs="1" maxOccurs="unbounded">
     <doc>
-      The emission lines are writen using the `IUPAC notation`_, i.e. an
-      initial and final edge seprated by a hyphen.
+      The emission line name, either in `IUPAC notation`_, i.e. initial
+      and final edge separated by a hyphen (e.g. ``K-L3``), or in Siegbahn notation
+      using Unicode (e.g. ``Kα1``) or LaTeX (e.g. ``K\alpha_1``).
+
+      Correspondence between IUPAC and Siegbahn notations:
+
+      .. list-table::
+         :header-rows: 1
+
+         * - IUPAC
+           - Siegbahn
+         * - K-L3
+           - Kα1
+         * - K-L2
+           - Kα2
+         * - K-L1
+           - Kα3
+         * - K-M3
+           - Kβ1
+         * - K-N3
+           - Kβ2
+         * - K-M2
+           - Kβ3
+         * - K-N5
+           - Kβ4
+         * - K-M5
+           - Kβ5
+         * - L3-M5
+           - Lα1
+         * - L3-M4
+           - Lα2
+         * - L2-M4
+           - Lβ1
+         * - L3-N5
+           - Lβ2
+         * - L1-M3
+           - Lβ3
+         * - L1-M2
+           - Lβ4
+         * - L3-O45
+           - Lβ5
+         * - L3-N1
+           - Lβ6
+         * - L3-O1
+           - Lβ7
+         * - L1-M5
+           - Lβ9
+         * - L1-M4
+           - Lβ10
+         * - L3-N4
+           - Lβ15
+         * - L2-M3
+           - Lβ17
+         * - L2-N4
+           - Lγ1
+         * - L1-N2
+           - Lγ2
+         * - L1-N3
+           - Lγ3
+         * - L1-O3
+           - Lγ4
+         * - L2-N1
+           - Lγ5
+         * - L2-O4
+           - Lγ6
+         * - L2-O1
+           - Lγ8
+         * - L2-M1
+           - Lε
+         * - L2-M1
+           - Lη
+         * - L3-M1
+           - Ll
+         * - L3-M3
+           - Ls
+         * - L3-M2
+           - Lt
+         * - L3-N6
+           - Lu
+         * - L2-N6
+           - Lν
+         * - M5-N7
+           - Mα1
+         * - M5-N6
+           - Mα2
+         * - M4-N6
+           - Mβ
+         * - M3-N5
+           - Mγ
 
       .. _IUPAC notation: https://doi.org/10.1002/xrs.1300200308
     </doc>
@@ -416,6 +506,86 @@
       <item value="P2-P5"></item>
       <item value="P3-P4"></item>
       <item value="P3-P5"></item>
+      <!-- Siegbahn notation (Unicode) -->
+      <item value="Kα1"></item>
+      <item value="Kα2"></item>
+      <item value="Kα3"></item>
+      <item value="Kβ1"></item>
+      <item value="Kβ2"></item>
+      <item value="Kβ3"></item>
+      <item value="Kβ4"></item>
+      <item value="Kβ5"></item>
+      <item value="Lα1"></item>
+      <item value="Lα2"></item>
+      <item value="Lβ1"></item>
+      <item value="Lβ2"></item>
+      <item value="Lβ3"></item>
+      <item value="Lβ4"></item>
+      <item value="Lβ5"></item>
+      <item value="Lβ6"></item>
+      <item value="Lβ7"></item>
+      <item value="Lβ9"></item>
+      <item value="Lβ10"></item>
+      <item value="Lβ15"></item>
+      <item value="Lβ17"></item>
+      <item value="Lγ1"></item>
+      <item value="Lγ2"></item>
+      <item value="Lγ3"></item>
+      <item value="Lγ4"></item>
+      <item value="Lγ5"></item>
+      <item value="Lγ6"></item>
+      <item value="Lγ8"></item>
+      <item value="Lε"></item>
+      <item value="Lη"></item>
+      <item value="Ll"></item>
+      <item value="Ls"></item>
+      <item value="Lt"></item>
+      <item value="Lu"></item>
+      <item value="Lν"></item>
+      <item value="Mα1"></item>
+      <item value="Mα2"></item>
+      <item value="Mβ"></item>
+      <item value="Mγ"></item>
+      <!-- Siegbahn notation (LaTeX) -->
+      <item value="K\alpha_1"></item>
+      <item value="K\alpha_2"></item>
+      <item value="K\alpha_3"></item>
+      <item value="K\beta_1"></item>
+      <item value="K\beta_2"></item>
+      <item value="K\beta_3"></item>
+      <item value="K\beta_4"></item>
+      <item value="K\beta_5"></item>
+      <item value="L\alpha_1"></item>
+      <item value="L\alpha_2"></item>
+      <item value="L\beta_1"></item>
+      <item value="L\beta_2"></item>
+      <item value="L\beta_3"></item>
+      <item value="L\beta_4"></item>
+      <item value="L\beta_5"></item>
+      <item value="L\beta_6"></item>
+      <item value="L\beta_7"></item>
+      <item value="L\beta_9"></item>
+      <item value="L\beta_{10}"></item>
+      <item value="L\beta_{15}"></item>
+      <item value="L\beta_{17}"></item>
+      <item value="L\gamma_1"></item>
+      <item value="L\gamma_2"></item>
+      <item value="L\gamma_3"></item>
+      <item value="L\gamma_4"></item>
+      <item value="L\gamma_5"></item>
+      <item value="L\gamma_6"></item>
+      <item value="L\gamma_8"></item>
+      <item value="L\varepsilon"></item>
+      <item value="L\eta"></item>
+      <item value="Ll"></item>
+      <item value="Ls"></item>
+      <item value="Lt"></item>
+      <item value="Lu"></item>
+      <item value="L\nu"></item>
+      <item value="M\alpha_1"></item>
+      <item value="M\alpha_2"></item>
+      <item value="M\beta"></item>
+      <item value="M\gamma"></item>
     </enumeration>
   </field>
 </definition>
