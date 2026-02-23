@@ -29,7 +29,7 @@
     of an element that occurs when the incident photon energy equals the binding
     energy of a core electron, enabling photoionization of that shell. 
   </doc>
-  <field name="name" type="NX_CHAR" minOccurs="1" maxOccurs="unbounded">
+  <field name="name" type="NX_CHAR" minOccurs="1" maxOccurs="1">
     <doc>
         Name of the absorption edge according to the `IUPAC notation`_. Each
         edge is labelled according to the shell from which the electron is
