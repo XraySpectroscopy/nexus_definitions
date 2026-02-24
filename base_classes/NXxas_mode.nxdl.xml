@@ -135,7 +135,7 @@
       </item>
     </enumeration>
   </field>
-  <group name="emission_lines" type="NXemission_lines" optional="true">
-  </group>
+  <!-- <group name="emission_lines" type="NXemission_lines" optional="true">
+  </group> -->
 
 </definition>
