@@ -30,9 +30,8 @@
   </doc>
   <field name="name" type="NX_CHAR">
     <doc>
-      The emission line name, either in `IUPAC notation`_, i.e. initial
-      and final edge separated by a hyphen (e.g. K-L3), or in Siegbahn notation
-      using Unicode (e.g. :math:`K\alpha_1`) or LaTeX (e.g. K\alpha_1).
+      The emission line name using the `IUPAC notation`_, i.e. initial
+      and final edge separated by a hyphen (e.g. ``K-L3``).
 
       Correspondence between IUPAC and Siegbahn notations:
 
@@ -523,100 +522,6 @@
       <item value="P2-P5"></item>
       <item value="P3-P4"></item>
       <item value="P3-P5"></item>
-      <!-- Siegbahn notation (Unicode) -->
-      <item value="Kα1"></item>
-      <item value="Kα2"></item>
-      <item value="Kα3"></item>
-      <item value="Kβ1"></item>
-      <item value="Kβ2'"></item>
-      <item value="Kβ2''"></item>
-      <item value="Kβ3"></item>
-      <item value="Kβ4'"></item>
-      <item value="Kβ4''"></item>
-      <item value="Kβ4x"></item>
-      <item value="Kβ5'"></item>
-      <item value="Kβ5''"></item>
-      <item value="Lα1"></item>
-      <item value="Lα2"></item>
-      <item value="Lβ1"></item>
-      <item value="Lβ2"></item>
-      <item value="Lβ3"></item>
-      <item value="Lβ4"></item>
-      <item value="Lβ5"></item>
-      <item value="Lβ6"></item>
-      <item value="Lβ7"></item>
-      <item value="Lβ7'"></item>
-      <item value="Lβ9"></item>
-      <item value="Lβ10"></item>
-      <item value="Lβ15"></item>
-      <item value="Lβ17"></item>
-      <item value="Lγ1"></item>
-      <item value="Lγ2"></item>
-      <item value="Lγ3"></item>
-      <item value="Lγ4"></item>
-      <item value="Lγ4'"></item>
-      <item value="Lγ5"></item>
-      <item value="Lγ6"></item>
-      <item value="Lγ8"></item>
-      <item value="Lγ8'"></item>
-      <item value="Lη"></item>
-      <item value="Ll"></item>
-      <item value="Ls"></item>
-      <item value="Lt"></item>
-      <item value="Lu"></item>
-      <item value="Lv"></item>
-      <item value="Mα1"></item>
-      <item value="Mα2"></item>
-      <item value="Mβ"></item>
-      <item value="Mγ"></item>
-      <item value="Mζ"></item>
-      <!-- Siegbahn notation (LaTeX) -->
-      <item value="K\alpha_1"></item>
-      <item value="K\alpha_2"></item>
-      <item value="K\alpha_3"></item>
-      <item value="K\beta_1"></item>
-      <item value="K\beta_2'"></item>
-      <item value="K\beta_2''"></item>
-      <item value="K\beta_3"></item>
-      <item value="K\beta_4'"></item>
-      <item value="K\beta_4''"></item>
-      <item value="K\beta_{4x}"></item>
-      <item value="K\beta_5'"></item>
-      <item value="K\beta_5''"></item>
-      <item value="L\alpha_1"></item>
-      <item value="L\alpha_2"></item>
-      <item value="L\beta_1"></item>
-      <item value="L\beta_2"></item>
-      <item value="L\beta_3"></item>
-      <item value="L\beta_4"></item>
-      <item value="L\beta_5"></item>
-      <item value="L\beta_6"></item>
-      <item value="L\beta_7"></item>
-      <item value="L\beta_7'"></item>
-      <item value="L\beta_9"></item>
-      <item value="L\beta_{10}"></item>
-      <item value="L\beta_{15}"></item>
-      <item value="L\beta_{17}"></item>
-      <item value="L\gamma_1"></item>
-      <item value="L\gamma_2"></item>
-      <item value="L\gamma_3"></item>
-      <item value="L\gamma_4"></item>
-      <item value="L\gamma_4'"></item>
-      <item value="L\gamma_5"></item>
-      <item value="L\gamma_6"></item>
-      <item value="L\gamma_8"></item>
-      <item value="L\gamma_8'"></item>
-      <item value="L\eta"></item>
-      <item value="Ll"></item>
-      <item value="Ls"></item>
-      <item value="Lt"></item>
-      <item value="Lu"></item>
-      <item value="Lv"></item>
-      <item value="M\alpha_1"></item>
-      <item value="M\alpha_2"></item>
-      <item value="M\beta"></item>
-      <item value="M\gamma"></item>
-      <item value="M\zeta"></item>
     </enumeration>
   </field>
   <field name="energy" type="NX_FLOAT" units="NX_ENERGY">
