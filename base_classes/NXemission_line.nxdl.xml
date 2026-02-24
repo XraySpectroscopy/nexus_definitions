@@ -619,4 +619,9 @@
       <item value="M\zeta"></item>
     </enumeration>
   </field>
+  <field name="energy" type="NX_FLOAT" units="NX_ENERGY">
+    <doc>
+      Energy of the emission line.
+    </doc>
+  </field>
 </definition>
