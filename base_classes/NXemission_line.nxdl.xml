@@ -21,16 +21,16 @@
 #
 # For further information, see http://www.nexusformat.org
 -->
-<definition name="NXemission_lines" type="group" extends="NXobject" category="base"
+<definition name="NXemission_line" type="group" extends="NXobject" category="base"
   xmlns="http://definition.nexusformat.org/nxdl/3.1"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://definition.nexusformat.org/nxdl/3.1 ../nxdl.xsd">
   <doc>
-    Emission lines are spectral lines with discrete frequencies that are
+    An emission line is a spectral line with a discrete frequency that is
     characteristic of the emitting atom.
   </doc>
-  <field name="name" type="NX_CHAR" minOccurs="1" maxOccurs="unbounded">
+  <field name="name" type="NX_CHAR">
     <doc>
-      The emission line names, either in `IUPAC notation`_, i.e. initial
+      The emission line name, either in `IUPAC notation`_, i.e. initial
       and final edge separated by a hyphen (e.g. K-L3), or in Siegbahn notation
       using Unicode (e.g. :math:`K\alpha_1`) or LaTeX (e.g. K\alpha_1).
 
