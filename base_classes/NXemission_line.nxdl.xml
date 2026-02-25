@@ -30,8 +30,9 @@
   </doc>
   <field name="name" type="NX_CHAR">
     <doc>
-      The emission line name using the `IUPAC notation`_, i.e. initial
-      and final edge separated by a hyphen (e.g. ``K-L3``).
+      The emission line name using either the `IUPAC notation`_, i.e. initial and final
+      edge separated by a hyphen (e.g. ``K-L3``), or the Latinized Siegbahn
+      notation (e.g. ``Ka1``).
 
       Correspondence between IUPAC and Siegbahn notations:
 
@@ -40,98 +41,145 @@
 
          * - IUPAC
            - Siegbahn
+           - Latinized Siegbahn
          * - K-L3
            - :math:`K\alpha_1`
+           - Ka1
          * - K-L2
            - :math:`K\alpha_2`
+           - Ka2
          * - K-L1
            - :math:`K\alpha_3`
+           - Ka3
          * - K-M3
            - :math:`K\beta_1`
+           - Kb1
          * - K-N3
            - :math:`K\beta_2'`
+           - Kb2\'
          * - K-N2
            - :math:`K\beta_2''`
+           - Kb2\'\'
          * - K-M2
            - :math:`K\beta_3`
+           - Kb3
          * - K-N5
            - :math:`K\beta_4'`
+           - Kb4\'
          * - K-N4
            - :math:`K\beta_4''`
+           - Kb4\'\'
          * - K-N4
            - :math:`K\beta_{4x}`
+           - Kb4x
          * - K-M5
            - :math:`K\beta_5'`
+           - Kb5\'
          * - K-M4
            - :math:`K\beta_5''`
+           - Kb5\'\'
          * - L3-M5
            - :math:`L\alpha_1`
+           - La1
          * - L3-M4
            - :math:`L\alpha_2`
+           - La2
          * - L2-M4
            - :math:`L\beta_1`
+           - Lb1
          * - L3-N5
            - :math:`L\beta_2`
+           - Lb2
          * - L1-M3
            - :math:`L\beta_3`
+           - Lb3
          * - L1-M2
            - :math:`L\beta_4`
+           - Lb4
          * - L3-O4,5
            - :math:`L\beta_5`
+           - Lb5
          * - L3-N1
            - :math:`L\beta_6`
+           - Lb6
          * - L3-O1
            - :math:`L\beta_7`
+           - Lb7
          * - L3-N6,7
            - :math:`L\beta_7'`
+           - Lb7\'
          * - L1-M5
            - :math:`L\beta_9`
+           - Lb9
          * - L1-M4
            - :math:`L\beta_{10}`
+           - Lb10
          * - L3-N4
            - :math:`L\beta_{15}`
+           - Lb15
          * - L2-M3
            - :math:`L\beta_{17}`
+           - Lb17
          * - L2-N4
            - :math:`L\gamma_1`
+           - Lg1
          * - L1-N2
            - :math:`L\gamma_2`
+           - Lg2
          * - L1-N3
            - :math:`L\gamma_3`
+           - Lg3
          * - L1-O3
            - :math:`L\gamma_4`
+           - Lg4
          * - L1-O2
            - :math:`L\gamma_4'`
+           - Lg4\'
          * - L2-N1
            - :math:`L\gamma_5`
+           - Lg5
          * - L2-O4
            - :math:`L\gamma_6`
+           - Lg6
          * - L2-O1
            - :math:`L\gamma_8`
+           - Lg8
          * - L2-N6,7
            - :math:`L\gamma_8'`
+           - Lg8\'
          * - L2-M1
            - :math:`L\eta`
+           - Ln
          * - L3-M1
            - :math:`Ll`
+           - Ll
          * - L3-M3
            - :math:`Ls`
+           - Ls
          * - L3-M2
            - :math:`Lt`
+           - Lt
          * - L3-N6,7
            - :math:`Lu`
+           - Lu
          * - L2-N6,7
            - :math:`Lv`
+           - Lv
          * - M5-N7
            - :math:`M\alpha_1`
+           - Ma1
          * - M5-N6
            - :math:`M\alpha_2`
+           - Ma2
          * - M4-N6
            - :math:`M\beta`
+           - Mb
          * - M3-N5
            - :math:`M\gamma`
+           - Mg
          * - M4,5-N2,3
            - :math:`M\zeta`
+           - Mz
 
       .. _IUPAC notation: https://doi.org/10.1002/xrs.1300200308
     </doc>
@@ -522,6 +570,52 @@
       <item value="P2-P5"></item>
       <item value="P3-P4"></item>
       <item value="P3-P5"></item>
+      <item value="Ka1"></item>
+      <item value="Ka2"></item>
+      <item value="Ka3"></item>
+      <item value="Kb1"></item>
+      <item value="Kb2'"></item>
+      <item value="Kb2''"></item>
+      <item value="Kb3"></item>
+      <item value="Kb4'"></item>
+      <item value="Kb4''"></item>
+      <item value="Kb4x"></item>
+      <item value="Kb5'"></item>
+      <item value="Kb5''"></item>
+      <item value="La1"></item>
+      <item value="La2"></item>
+      <item value="Lb1"></item>
+      <item value="Lb2"></item>
+      <item value="Lb3"></item>
+      <item value="Lb4"></item>
+      <item value="Lb5"></item>
+      <item value="Lb6"></item>
+      <item value="Lb7"></item>
+      <item value="Lb7'"></item>
+      <item value="Lb9"></item>
+      <item value="Lb10"></item>
+      <item value="Lb15"></item>
+      <item value="Lb17"></item>
+      <item value="Lg1"></item>
+      <item value="Lg2"></item>
+      <item value="Lg3"></item>
+      <item value="Lg4"></item>
+      <item value="Lg4'"></item>
+      <item value="Lg5"></item>
+      <item value="Lg6"></item>
+      <item value="Lg8"></item>
+      <item value="Lg8'"></item>
+      <item value="Ln"></item>
+      <item value="Ll"></item>
+      <item value="Ls"></item>
+      <item value="Lt"></item>
+      <item value="Lu"></item>
+      <item value="Lv"></item>
+      <item value="Ma1"></item>
+      <item value="Ma2"></item>
+      <item value="Mb"></item>
+      <item value="Mg"></item>
+      <item value="Mz"></item>
     </enumeration>
   </field>
   <field name="energy" type="NX_FLOAT" units="NX_ENERGY">
