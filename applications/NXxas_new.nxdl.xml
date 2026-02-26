@@ -3,7 +3,7 @@
 <!--
 # NeXus - Neutron and X-ray Common Data Format
 # 
-# Copyright (C) 2008-2022 NeXus International Advisory Committee (NIAC)
+# Copyright (C) 2024-2026 NeXus International Advisory Committee (NIAC)
 # 
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -36,18 +36,15 @@
         </symbol>
     </symbols>
     <doc>
-      This is an application definition for X-ray absorption spectroscopy. 
+      This is a generic application definition for X-ray absorption spectroscopy. Specialized definitions are available for different acquisition modes.
     </doc>
     <group type="NXentry">
         <field name="definition">
-            <doc> Official NeXus NXDL schema to which this file conforms. TODO: replace NXxas </doc>
+            <doc> Official NeXus NXDL schema to which this file conforms.</doc>
             <enumeration>
                 <item value="NXxas_new"></item>
             </enumeration>
         </field>
-        <group type="NXxas_mode" name="mode">
-            <doc></doc>
-        </group>
         <group type="NXelement" name="element">
             <doc>Excited element</doc>
         </group>
@@ -58,19 +55,27 @@
             <doc>Specify if the data commes from a calculation</doc>
         </field>
         <field name="energy" type="NX_FLOAT" units="NX_ENERGY">
-            <doc>TODO</doc>
+            <doc>
+                The energy axis of the spectrum.
+            </doc>
             <dimensions rank="1">
                 <dim index="1" value="nEnergy" />
             </dimensions>
         </field>
         <field name="intensity" type="NX_FLOAT" units="NX_ANY">
-            <doc>TODO</doc>
+            <doc>
+                The intensity of the spectrum. The precise definition of what is
+                meant by intensity depends on the acquisition mode, and will be
+                specified by each subclass application definition.
+            </doc>
             <dimensions rank="1">
                 <dim index="1" value="nEnergy" />
             </dimensions>
         </field>
-        <field name="intensity_errors" type="NX_FLOAT" units="NX_ANY">
-            <doc>TODO</doc>
+        <field name="intensity_errors" type="NX_FLOAT" units="NX_ANY" optional="true">
+            <doc>
+                The errors associated with the intensity of the spectrum.
+            </doc>
             <dimensions rank="1">
                 <dim index="1" value="nEnergy" />
             </dimensions>
@@ -80,83 +85,10 @@
                 <doc>Descriptive name of the sample</doc>
             </field>
         </group>
-        <group type="NXprocess" optional="true">
-            <doc>
-                Description on how :ref:`energy &lt;/NXxas_new/ENTRY/energy-field&gt;`
-                and :ref:`intensity &lt;/NXxas_new/ENTRY/intensity-field&gt;` were obtained
-                from the raw data.
-            </doc>
-        </group>
-        <group type="NXinstrument" optional="true">
-            <group type="NXsource">
-                <field name="type"/>
-                <field name="name"/>
-                <field name="probe">
-                    <enumeration>
-                        <item value="x-ray"/>
-                    </enumeration>
-                </field>
-            </group>
-            <group type="NXmonochromator" name="monochromator" optional="true">
-                <field name="energy" type="NX_FLOAT" units="NX_ENERGY" optional="true">
-                    <dimensions rank="1">
-                        <dim index="1" value="nEnergy" />
-                    </dimensions>
-                </field>
-                <group type="NXcrystal" name ="crystal" optional="true">
-                    <field name="d_spacing" type="NX_FLOAT" units="NX_LENGTH">
-                        <doc>spacing between crystal planes of the reflection</doc>
-                    </field>
-                    <field name="type">
-                        <doc>Type or material of monochromating substance (Si, Ge, Multilayer).</doc>
-                    </field>
-                    <field name="reflection" type="NX_INT" units="NX_UNITLESS">
-                        <doc>Miller indices (hkl) values of nominal reflection</doc>
-                        <dimensions>
-                            <dim index="1" value="3"/>
-                        </dimensions>
-                    </field>
-                </group>
-            </group>
-            <group type="NXdetector" minOccurs="0" maxOccurs="unbounded">
-                <field name="data" type="NX_NUMBER">
-                    <dimensions rank="1">
-                        <dim index="1" value="nEnergy" />
-                    </dimensions>
-                </field>
-            </group>
-            <group type="NXdetector" name="i0" optional="true">
-                <field name="data" type="NX_NUMBER">
-                    <dimensions rank="1">
-                        <dim index="1" value="nEnergy" />
-                    </dimensions>
-                </field>
-            </group>
-        </group>
         <group type="NXdata" optional="true">
-            <doc>XAS intensity versus energy plot</doc>
+            <doc>Plot of the X-ray absorption intensity versus energy</doc>
             <link name="energy" target="/NXentry/energy"/>
             <link name="intensity" target="/NXentry/intensity"/>
-        </group>
-        <group type="NXCollection" optional="true">
-            <group type="NXdata" optional="true">
-                <doc>Table like data structure common in the XAS domain.</doc>
-                <field name="data" type="NX_NUMBER">
-                    <dimensions rank="2">
-                        <dim index="1" value="nChan" />
-                        <dim index="2" value="nEnergy" />
-                    </dimensions>
-                </field>
-                <field name="columns" type="NX_CHAR">
-                    <dimensions rank="1">
-                        <dim index="1" value="nEnergy" />
-                    </dimensions>
-                </field>
-                <group type="NXuser" name="data_collector" optional="true">
-                    <field name="name"></field>
-                    <field name="orcid"></field>
-                </group>
-            </group>
         </group>
     </group>
 </definition>
