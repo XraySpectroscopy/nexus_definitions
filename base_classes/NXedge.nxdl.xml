@@ -24,10 +24,82 @@
 <definition name="NXedge" type="group" extends="NXobject" category="base"
   xmlns="http://definition.nexusformat.org/nxdl/3.1"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://definition.nexusformat.org/nxdl/3.1 ../nxdl.xsd">
-  <doc>Absorption edge</doc>
+  <doc>
+    An absorption edge is a sharp discontinuity in the X-ray absorption spectrum
+    of an element that occurs when the incident photon energy equals the binding
+    energy of a core electron, enabling photoionization of that shell. 
+  </doc>
   <field name="name" type="NX_CHAR" minOccurs="1" maxOccurs="1">
     <doc>
-        Name of the edge
+        Name of the absorption edge specified using
+        `IUPAC notation`_ (e.g., ``K``, ``L2``, ``M5``), which identifies the
+        shell and sub-shell from which the electron is ejected.
+        
+        Correspondence between IUPAC and electronic level notations:
+
+        .. list-table::
+           :header-rows: 1
+
+           * - IUPAC
+             - Electronic level
+           * - K
+             - 1s
+           * - L1
+             - 2s
+           * - L2
+             - :math:`2p_{1/2}`
+           * - L3
+             - :math:`2p_{3/2}`
+           * - M1
+             - 3s
+           * - M2
+             - :math:`3p_{1/2}`
+           * - M3
+             - :math:`3p_{3/2}`
+           * - M4
+             - :math:`3d_{3/2}`
+           * - M5
+             - :math:`3d_{5/2}`
+           * - N1
+             - 4s
+           * - N2
+             - :math:`4p_{1/2}`
+           * - N3
+             - :math:`4p_{3/2}`
+           * - N4
+             - :math:`4d_{3/2}`
+           * - N5
+             - :math:`4d_{5/2}`
+           * - N6
+             - :math:`4f_{5/2}`
+           * - N7
+             - :math:`4f_{7/2}`
+           * - O1
+             - 5s
+           * - O2
+             - :math:`5p_{1/2}`
+           * - O3
+             - :math:`5p_{3/2}`
+           * - O4
+             - :math:`5d_{3/2}`
+           * - O5
+             - :math:`5d_{5/2}`
+           * - O6
+             - :math:`5f_{5/2}`
+           * - O7
+             - :math:`5f_{7/2}`
+           * - P1
+             - 6s
+           * - P2
+             - :math:`6p_{1/2}`
+           * - P3
+             - :math:`6p_{3/2}`
+           * - P4
+             - :math:`6d_{3/2}`
+           * - P5
+             - :math:`6d_{5/2}`
+
+        .. _IUPAC notation: https://doi.org/10.1002/xrs.1300200308
     </doc>
     <enumeration>
       <item value="K"></item>
@@ -49,10 +121,20 @@
       <item value="O1"></item>
       <item value="O2"></item>
       <item value="O3"></item>
+      <item value="O4"></item>
+      <item value="O5"></item>
+      <item value="O6"></item>
+      <item value="O7"></item>
       <item value="P1"></item>
       <item value="P2"></item>
       <item value="P3"></item>
+      <item value="P4"></item>
+      <item value="P5"></item>
     </enumeration>
-
+  </field>
+  <field name="energy" type="NX_FLOAT" units="NX_ENERGY">
+    <doc>
+      Energy of the absorption edge.
+    </doc>
   </field>
 </definition>
