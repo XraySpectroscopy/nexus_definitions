@@ -31,11 +31,9 @@
   </doc>
   <field name="name" type="NX_CHAR" minOccurs="1" maxOccurs="1">
     <doc>
-        Name of the absorption edge. The edge can be specified using either the
-        `IUPAC notation`_ (e.g., ``K``, ``L2``, ``M5``), which identifies the shell
-        from which the electron is ejected, or the equivalent spectroscopic
-        electronic level notation using only ASCII characters
-        (e.g., ``1s``, ``2p1/2``, ``3d5/2``).
+        Name of the absorption edge specified using
+        `IUPAC notation`_ (e.g., ``K``, ``L2``, ``M5``), which identifies the
+        shell and sub-shell from which the electron is ejected.
         
         Correspondence between IUPAC and electronic level notations:
 
@@ -132,34 +130,6 @@
       <item value="P3"></item>
       <item value="P4"></item>
       <item value="P5"></item>
-      <item value="1s"></item>
-      <item value="2s"></item>
-      <item value="2p1/2"></item>
-      <item value="2p3/2"></item>
-      <item value="3s"></item>
-      <item value="3p1/2"></item>
-      <item value="3p3/2"></item>
-      <item value="3d3/2"></item>
-      <item value="3d5/2"></item>
-      <item value="4s"></item>
-      <item value="4p1/2"></item>
-      <item value="4p3/2"></item>
-      <item value="4d3/2"></item>
-      <item value="4d5/2"></item>
-      <item value="4f5/2"></item>
-      <item value="4f7/2"></item>
-      <item value="5s"></item>
-      <item value="5p1/2"></item>
-      <item value="5p3/2"></item>
-      <item value="5d3/2"></item>
-      <item value="5d5/2"></item>
-      <item value="5f5/2"></item>
-      <item value="5f7/2"></item>
-      <item value="6s"></item>
-      <item value="6p1/2"></item>
-      <item value="6p3/2"></item>
-      <item value="6d3/2"></item>
-      <item value="6d5/2"></item>
     </enumeration>
   </field>
   <field name="energy" type="NX_FLOAT" units="NX_ENERGY">
