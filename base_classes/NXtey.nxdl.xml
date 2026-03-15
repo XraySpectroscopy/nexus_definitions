@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="nxdlformat.xsl" ?>
+<!--
+# NeXus - Neutron and X-ray Common Data Format
+#
+# Copyright (C) 2026 NeXus International Advisory Committee (NIAC)
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation; either
+# version 3 of the License, or (at your option) any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+# For further information, see http://www.nexusformat.org
+-->
+<definition name="NXtey" extends="NXobject" type="group" category="base"
+    xmlns="http://definition.nexusformat.org/nxdl/3.1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://definition.nexusformat.org/nxdl/3.1 ../nxdl.xsd ">
+    <symbols>
+        <symbol name="nEnergy">
+            <doc>Number of energy data points</doc>
+        </symbol>
+    </symbols>
+    <doc>
+      Total electron yield (TEY) mode XAS. The drain current or total
+      electron current is proportional to the absorption coefficient:
+
+      .. math:: \mu(E) \propto I_{ey}/I_0
+
+      TEY is inherently surface-sensitive because electrons are readily
+      absorbed by most materials, limiting the probing depth to a few
+      nanometers.
+    </doc>
+    <group type="NXdetector" name="i0" optional="true">
+        <doc>
+            Detector measuring the incident beam intensity
+            :math:`I_0`.
+        </doc>
+        <field name="data" type="NX_NUMBER">
+            <dimensions rank="1">
+                <dim index="1" value="nEnergy" />
+            </dimensions>
+        </field>
+    </group>
+    <group type="NXdetector" name="iey" optional="true">
+        <doc>
+            Detector measuring the total electron yield
+            :math:`I_{ey}` (drain current).
+        </doc>
+        <field name="data" type="NX_NUMBER">
+            <dimensions rank="1">
+                <dim index="1" value="nEnergy" />
+            </dimensions>
+        </field>
+    </group>
+    <group type="NXprocess" optional="true">
+        <doc>
+            Description of how the intensity was obtained from
+            the raw detector data (i0, iey).
+        </doc>
+        <field name="program" type="NX_CHAR" optional="true">
+            <doc>Name of the program used for processing.</doc>
+        </field>
+        <field name="version" type="NX_CHAR" optional="true">
+            <doc>Version of the program used for processing.</doc>
+        </field>
+        <field name="date" type="NX_DATE_TIME" optional="true">
+            <doc>Date and time of processing.</doc>
+        </field>
+    </group>
+</definition>

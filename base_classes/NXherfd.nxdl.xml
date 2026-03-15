@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="nxdlformat.xsl" ?>
+<!--
+# NeXus - Neutron and X-ray Common Data Format
+#
+# Copyright (C) 2026 NeXus International Advisory Committee (NIAC)
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation; either
+# version 3 of the License, or (at your option) any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+# For further information, see http://www.nexusformat.org
+-->
+<definition name="NXherfd" extends="NXobject" type="group" category="base"
+    xmlns="http://definition.nexusformat.org/nxdl/3.1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://definition.nexusformat.org/nxdl/3.1 ../nxdl.xsd ">
+    <symbols>
+        <symbol name="nEnergy">
+            <doc>Number of energy data points</doc>
+        </symbol>
+    </symbols>
+    <doc>
+      High-energy resolution fluorescence detection (HERFD) is a particular case
+      of partial fluorescence yield measured with a crystal analyzer
+      spectrometer with an energy bandwidth of approximately 1-2 eV.
+
+      The HERFD spectrum corresponds to a constant-emission-energy cut
+      through the Resonant Inelastic X-ray Scattering (RIXS) plane.
+      The spectral shape depends on the emission energy, making the
+      emission line and emission energy mandatory metadata.
+
+      .. math:: \mu(E) \propto I_f/I_0
+
+      The spectrometer uses Rowland circle geometry (Johann or Johansson
+      type). Multiple crystal analyzers may be arranged at different
+      horizontal angles around the sample to increase solid angle coverage.
+    </doc>
+    <group type="NXemission_line" name="emission_line">
+        <doc>
+            The emission line at which the HERFD spectrum is measured.
+        </doc>
+    </group>
+    <field name="emission_energy" type="NX_FLOAT" units="NX_ENERGY">
+        <doc>
+            The emission energy at which the spectrometer is set.
+        </doc>
+    </field>
+    <group name="beamline_coordinate_system" type="NXcoordinate_system" recommended="true">
+        <doc>
+            Beamline coordinate system with the sample at the origin:
+            x along the beam, y horizontal, z opposite to gravity.
+        </doc>
+        <field name="origin">
+            <enumeration>
+                <item value="sample"/>
+            </enumeration>
+        </field>
+        <field name="x_direction">
+            <enumeration>
+                <item value="along incident beam"/>
+            </enumeration>
+        </field>
+        <field name="y_direction">
+            <enumeration>
+                <item value="horizontal perpendicular to beam"/>
+            </enumeration>
+        </field>
+        <field name="z_direction">
+            <enumeration>
+                <item value="opposite to gravity"/>
+            </enumeration>
+        </field>
+        <field name="x" type="NX_NUMBER">
+            <enumeration>
+                <item value="[1, 0, 0]"/>
+            </enumeration>
+        </field>
+        <field name="y" type="NX_NUMBER">
+            <enumeration>
+                <item value="[0, 1, 0]"/>
+            </enumeration>
+        </field>
+        <field name="z" type="NX_NUMBER">
+            <enumeration>
+                <item value="[0, 0, 1]"/>
+            </enumeration>
+        </field>
+        <field name="depends_on" type="NX_CHAR">
+            <doc>
+                Should point to
+                ``transformations/beam``.
+            </doc>
+        </field>
+        <group name="transformations" type="NXtransformations">
+            <doc>
+                Two rotations relating the beamline frame to
+                the NeXus/McStas laboratory frame, plus direction
+                vectors labeling beam and gravity.
+            </doc>
+            <field name="beam" type="NX_NUMBER" units="NX_UNITLESS">
+                <doc>
+                    Direction of the incident beam in the beamline
+                    coordinate system.
+                </doc>
+                <attribute name="vector" type="NX_NUMBER">
+                    <enumeration>
+                        <item value="[1, 0, 0]"/>
+                    </enumeration>
+                </attribute>
+                <attribute name="depends_on">
+                    <enumeration>
+                        <item value="gravity"/>
+                    </enumeration>
+                </attribute>
+            </field>
+            <field name="gravity" type="NX_NUMBER" units="NX_UNITLESS">
+                <doc>
+                    Direction of gravity in the beamline coordinate
+                    system.
+                </doc>
+                <attribute name="vector" type="NX_NUMBER">
+                    <enumeration>
+                        <item value="[0, 0, -1]"/>
+                    </enumeration>
+                </attribute>
+                <attribute name="depends_on">
+                    <enumeration>
+                        <item value="rotate_gravity_to_minus_y"/>
+                    </enumeration>
+                </attribute>
+            </field>
+            <field name="rotate_gravity_to_minus_y" type="NX_NUMBER" units="NX_ANGLE">
+                <doc>
+                    Active rotation moving gravity from the
+                    beamline direction (-z) to the McStas direction (-y).
+                </doc>
+                <attribute name="transformation_type">
+                    <enumeration>
+                        <item value="rotation"/>
+                    </enumeration>
+                </attribute>
+                <attribute name="vector" type="NX_NUMBER">
+                    <enumeration>
+                        <item value="[1, 0, 0]"/>
+                    </enumeration>
+                </attribute>
+                <attribute name="depends_on">
+                    <enumeration>
+                        <item value="rotate_beam_to_plus_z"/>
+                    </enumeration>
+                </attribute>
+            </field>
+            <field name="rotate_beam_to_plus_z" type="NX_NUMBER" units="NX_ANGLE">
+                <doc>
+                    Active rotation moving the beam from the
+                    beamline direction (+x) to the McStas direction (+z).
+                </doc>
+                <attribute name="transformation_type">
+                    <enumeration>
+                        <item value="rotation"/>
+                    </enumeration>
+                </attribute>
+                <attribute name="vector" type="NX_NUMBER">
+                    <enumeration>
+                        <item value="[0, 1, 0]"/>
+                    </enumeration>
+                </attribute>
+                <attribute name="depends_on">
+                    <doc>
+                        Should point to ``.`` (the McStas laboratory
+                        frame).
+                    </doc>
+                </attribute>
+            </field>
+        </group>
+    </group>
+    <group name="beam" type="NXbeam" recommended="true">
+        <doc>The incident X-ray beam.</doc>
+        <field name="incident_energy" type="NX_FLOAT" units="NX_ENERGY" optional="true">
+            <doc>
+                Energy of the incident beam at the sample position.
+            </doc>
+        </field>
+        <field name="depends_on" recommended="true">
+            <doc>
+                Should point to
+                ``beam/transformations/beam_direction``.
+            </doc>
+        </field>
+        <group name="transformations" type="NXtransformations" recommended="true">
+            <field name="beam_direction" type="NX_NUMBER" units="NX_UNITLESS">
+                <doc>
+                    Beam direction in the beamline coordinate
+                    system. The beam travels along +x.
+                </doc>
+                <attribute name="vector" type="NX_NUMBER">
+                    <enumeration>
+                        <item value="[1, 0, 0]"/>
+                    </enumeration>
+                </attribute>
+                <attribute name="depends_on">
+                    <doc>
+                        Should point to the beamline coordinate system
+                        or to the sample.
+                    </doc>
+                </attribute>
+            </field>
+        </group>
+    </group>
+    <group type="NXsource" optional="true">
+        <field name="type"/>
+        <field name="name"/>
+        <field name="probe">
+            <enumeration>
+                <item value="x-ray"/>
+            </enumeration>
+        </field>
+    </group>
+    <group type="NXdetector" name="i0" optional="true">
+        <doc>
+            Detector measuring the incident beam intensity
+            :math:`I_0`, positioned upstream of the sample along
+            the beam direction.
+        </doc>
+        <field name="data" type="NX_NUMBER">
+            <dimensions rank="1">
+                <dim index="1" value="nEnergy" />
+            </dimensions>
+        </field>
+        <field name="depends_on" type="NX_CHAR" recommended="true">
+            <doc>
+                Should point to
+                ``i0/transformations/i0_distance``.
+            </doc>
+        </field>
+        <group name="transformations" type="NXtransformations" recommended="true">
+            <field name="i0_distance" type="NX_NUMBER" units="NX_LENGTH">
+                <doc>
+                    Distance from the sample to the I0 detector,
+                    measured upstream along the beam (negative x
+                    direction in the beamline frame).
+                </doc>
+                <attribute name="transformation_type">
+                    <enumeration>
+                        <item value="translation"/>
+                    </enumeration>
+                </attribute>
+                <attribute name="vector" type="NX_NUMBER">
+                    <enumeration>
+                        <item value="[-1, 0, 0]"/>
+                    </enumeration>
+                </attribute>
+                <attribute name="depends_on">
+                    <doc>
+                        Should point to the sample.
+                    </doc>
+                </attribute>
+            </field>
+        </group>
+    </group>
+    <group type="NXcrystal" name="ANALYZERCRYSTAL" nameType="partial">
+        <doc>
+            Crystal analyzer on the Rowland circle. For
+            multi-crystal spectrometers, use one group per
+            crystal (e.g. ``analyzer1``, ``analyzer2``).
+        </doc>
+        <field name="type" optional="true">
+            <doc>
+                Type or material of the analyzer crystal
+                (Si, Ge, etc.).
+            </doc>
+        </field>
+        <field name="reflection" type="NX_INT" units="NX_UNITLESS" optional="true">
+            <doc>
+                Miller indices (hkl) values of the nominal
+                reflection.
+            </doc>
+            <dimensions>
+                <dim index="1" value="3"/>
+            </dimensions>
+        </field>
+        <field name="d_spacing" type="NX_FLOAT" units="NX_LENGTH" optional="true">
+            <doc>
+                The spacing between crystal planes of the
+                reflection.
+            </doc>
+        </field>
+        <field name="bragg_angle" type="NX_FLOAT" units="NX_ANGLE" optional="true">
+            <doc>
+                Bragg angle :math:`\theta_B` of the nominal
+                reflection.
+            </doc>
+        </field>
+        <field name="bending_radius" type="NX_FLOAT" units="NX_LENGTH" optional="true">
+            <doc>
+                Bending radius of the spherically bent crystal
+                analyzer. In Johann geometry this is :math:`2R_R`
+                (twice the Rowland radius).
+            </doc>
+        </field>
+        <field name="rowland_radius" type="NX_FLOAT" units="NX_LENGTH" optional="true">
+            <doc>
+                Radius of the Rowland circle :math:`R_R`. The
+                sample, crystal center, and detector focus all
+                lie on this circle.
+            </doc>
+        </field>
+        <field name="energy_resolution" type="NX_FLOAT" units="NX_ENERGY" optional="true">
+            <doc>
+                The energy bandwidth or resolution of the crystal
+                analyzer.
+            </doc>
+        </field>
+        <field name="geometry_type" optional="true">
+            <doc>
+                The type of crystal analyzer geometry.
+            </doc>
+            <enumeration>
+                <item value="Johann"/>
+                <item value="Johansson"/>
+            </enumeration>
+        </field>
+        <field name="diameter" type="NX_FLOAT" units="NX_LENGTH" optional="true">
+            <doc>
+                Diameter of the crystal analyzer wafer.
+            </doc>
+        </field>
+        <field name="depends_on" type="NX_CHAR" recommended="true">
+            <doc>
+                Should point to the last transformation in the
+                chain, i.e.
+                ``transformations/analyzer_distance``.
+            </doc>
+        </field>
+        <group name="transformations" type="NXtransformations" recommended="true">
+            <doc>
+                Transformation chain placing the analyzer relative
+                to the sample: azimuthal angle, polar angle,
+                then distance.
+            </doc>
+            <field name="analyzer_distance" type="NX_NUMBER" units="NX_LENGTH">
+                <doc>
+                    Sample-to-analyzer distance.
+                </doc>
+                <attribute name="transformation_type">
+                    <enumeration>
+                        <item value="translation"/>
+                    </enumeration>
+                </attribute>
+                <attribute name="vector" type="NX_NUMBER">
+                    <enumeration>
+                        <item value="[1, 0, 0]"/>
+                    </enumeration>
+                </attribute>
+                <attribute name="depends_on">
+                    <enumeration>
+                        <item value="analyzer_polar_angle"/>
+                    </enumeration>
+                </attribute>
+            </field>
+            <field name="analyzer_polar_angle" type="NX_NUMBER" units="NX_ANGLE">
+                <doc>
+                    Polar angle of the analyzer in the vertical
+                    Rowland plane. Elevation from the horizontal
+                    beam plane to the sample-analyzer direction.
+                </doc>
+                <attribute name="transformation_type">
+                    <enumeration>
+                        <item value="rotation"/>
+                    </enumeration>
+                </attribute>
+                <attribute name="vector" type="NX_NUMBER">
+                    <enumeration>
+                        <item value="[0, -1, 0]"/>
+                    </enumeration>
+                </attribute>
+                <attribute name="depends_on">
+                    <enumeration>
+                        <item value="analyzer_azimuthal_angle"/>
+                    </enumeration>
+                </attribute>
+            </field>
+            <field name="analyzer_azimuthal_angle" type="NX_NUMBER" units="NX_ANGLE">
+                <doc>
+                    Azimuthal (horizontal) angle of the
+                    spectrometer arm from the incident beam
+                    direction. Rotation around the vertical
+                    z-axis. Typically around 90 degrees to
+                    minimize elastic scattering.
+                </doc>
+                <attribute name="transformation_type">
+                    <enumeration>
+                        <item value="rotation"/>
+                    </enumeration>
+                </attribute>
+                <attribute name="vector" type="NX_NUMBER">
+                    <enumeration>
+                        <item value="[0, 0, 1]"/>
+                    </enumeration>
+                </attribute>
+                <attribute name="depends_on">
+                    <doc>
+                        Should point to the sample.
+                    </doc>
+                </attribute>
+            </field>
+        </group>
+    </group>
+    <group type="NXdetector" name="if" optional="true">
+        <doc>
+            Detector measuring the fluorescence intensity
+            :math:`I_f` diffracted by the crystal analyzer(s).
+        </doc>
+        <field name="data" type="NX_NUMBER">
+            <dimensions rank="1">
+                <dim index="1" value="nEnergy" />
+            </dimensions>
+        </field>
+        <field name="depends_on" type="NX_CHAR" recommended="true">
+            <doc>
+                Should point to the last transformation in the
+                chain, i.e.
+                ``transformations/detector_distance``.
+            </doc>
+        </field>
+        <group name="transformations" type="NXtransformations" recommended="true">
+            <doc>
+                Transformation chain placing the detector relative
+                to the sample: azimuthal angle, polar angle,
+                then distance.
+            </doc>
+            <field name="detector_distance" type="NX_NUMBER" units="NX_LENGTH">
+                <doc>
+                    Distance from the sample to the detector.
+                </doc>
+                <attribute name="transformation_type">
+                    <enumeration>
+                        <item value="translation"/>
+                    </enumeration>
+                </attribute>
+                <attribute name="vector" type="NX_NUMBER">
+                    <enumeration>
+                        <item value="[1, 0, 0]"/>
+                    </enumeration>
+                </attribute>
+                <attribute name="depends_on">
+                    <enumeration>
+                        <item value="detector_polar_angle"/>
+                    </enumeration>
+                </attribute>
+            </field>
+            <field name="detector_polar_angle" type="NX_NUMBER" units="NX_ANGLE">
+                <doc>
+                    Polar angle of the detector in the vertical
+                    Rowland plane.
+                </doc>
+                <attribute name="transformation_type">
+                    <enumeration>
+                        <item value="rotation"/>
+                    </enumeration>
+                </attribute>
+                <attribute name="vector" type="NX_NUMBER">
+                    <enumeration>
+                        <item value="[0, -1, 0]"/>
+                    </enumeration>
+                </attribute>
+                <attribute name="depends_on">
+                    <enumeration>
+                        <item value="detector_azimuthal_angle"/>
+                    </enumeration>
+                </attribute>
+            </field>
+            <field name="detector_azimuthal_angle" type="NX_NUMBER" units="NX_ANGLE">
+                <doc>
+                    Azimuthal (horizontal) angle of the detector
+                    from the incident beam direction. Should
+                    match the analyzer azimuthal angle for
+                    on-Rowland focusing.
+                </doc>
+                <attribute name="transformation_type">
+                    <enumeration>
+                        <item value="rotation"/>
+                    </enumeration>
+                </attribute>
+                <attribute name="vector" type="NX_NUMBER">
+                    <enumeration>
+                        <item value="[0, 0, 1]"/>
+                    </enumeration>
+                </attribute>
+                <attribute name="depends_on">
+                    <doc>
+                        Should point to the sample.
+                    </doc>
+                </attribute>
+            </field>
+        </group>
+    </group>
+    <group type="NXprocess" optional="true">
+        <doc>
+            Description of how the intensity was obtained from
+            the raw detector data (i0, if).
+        </doc>
+        <field name="program" type="NX_CHAR" optional="true">
+            <doc>Name of the program used for processing.</doc>
+        </field>
+        <field name="version" type="NX_CHAR" optional="true">
+            <doc>Version of the program used for processing.</doc>
+        </field>
+        <field name="date" type="NX_DATE_TIME" optional="true">
+            <doc>Date and time of processing.</doc>
+        </field>
+    </group>
+</definition>

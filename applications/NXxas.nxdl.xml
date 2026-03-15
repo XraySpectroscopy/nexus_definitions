@@ -2,9 +2,9 @@
 <?xml-stylesheet type="text/xsl" href="nxdlformat.xsl" ?>
 <!--
 # NeXus - Neutron and X-ray Common Data Format
-# 
-# Copyright (C) 2008-2026 NeXus International Advisory Committee (NIAC)
-# 
+#
+# Copyright (C) 2024-2026 NeXus International Advisory Committee (NIAC)
+#
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
 # License as published by the Free Software Foundation; either
@@ -21,107 +21,88 @@
 #
 # For further information, see http://www.nexusformat.org
 -->
-<definition name="NXxas" extends="NXobject" type="group"
-    category="application"
+<definition name="NXxas" extends="NXobject" type="group" category="application"
     xmlns="http://definition.nexusformat.org/nxdl/3.1"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://definition.nexusformat.org/nxdl/3.1 ../nxdl.xsd "
-    >
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://definition.nexusformat.org/nxdl/3.1 ../nxdl.xsd ">
     <symbols>
-        <doc>
-		    The symbol(s) listed here will be used below to coordinate datasets with the same shape.
-        </doc>
-		<symbol name="nP">
-		    <doc>Number of points</doc>
+        <symbol name="nEnergy">
+            <doc>Number of energy data points</doc>
         </symbol>
-	</symbols>
+    </symbols>
     <doc>
-      This is an application definition for raw data from an X-ray absorption spectroscopy experiment. 
-      
-      This is essentially a scan on energy versus incoming/ 
-      absorbed beam.
+      Application definition for X-ray absorption spectroscopy (XAS).
+
+      This definition contains the common fields shared by all XAS
+      measurements: energy axis, processed intensity, element, edge,
+      and sample information.
+
+      The measurement mode (transmission, fluorescence yield, electron
+      yield, HERFD, etc.) is described by an optional ``mode`` group
+      whose NeXus type is one of the mode base classes (NXtrans,
+      NXtfy, NXpfy, NXherfd, NXtey, NXpey).
+      The mode group holds all mode-specific raw data, detectors,
+      and instrument geometry.
     </doc>
     <group type="NXentry">
-        <field name="title"/>
-        <field name="start_time" type="NX_DATE_TIME"/>
         <field name="definition">
-            <doc> Official NeXus NXDL schema to which this file conforms </doc>
+            <doc>Official NeXus NXDL schema to which this file conforms.</doc>
             <enumeration>
-                <item value="NXxas"></item>
+                <item value="NXxas"/>
             </enumeration>
         </field>
-        <group type="NXinstrument">
-            <group type="NXsource">
-                <field name="type"/>
-                <field name="name"/>
-                <field name="probe">
-                    <enumeration>
-                        <item value="x-ray"/>
-                    </enumeration>
-                </field>
-            </group>
-            <group type="NXmonochromator" name="monochromator">
-              <field name="energy" axis="1" type="NX_FLOAT">
-                <dimensions rank="1">
-                  <dim index="1" value="nP" />
-                </dimensions>
-              </field>
-            </group>
-            <group type="NXdetector" name="incoming_beam">
-              <field name="data" type="NX_NUMBER">
-                <dimensions rank="1">
-                  <dim index="1" value="nP" />
-                </dimensions>
-              </field>
-            </group>
-            <group type="NXdetector" name="absorbed_beam">
-              <field name="data" type="NX_NUMBER">
-                  <doc>This data corresponds to the sample signal.</doc>
-                <dimensions rank="1">
-                  <dim index="1" value="nP" />
-                </dimensions>
-              </field>
-            </group>
+        <group type="NXelement" name="element">
+            <doc>Excited element</doc>
         </group>
+        <group type="NXedge" name="edge">
+            <doc>Absorption edge</doc>
+        </group>
+        <field name="calculated" type="NX_BOOLEAN" units="NX_UNITLESS" optional="true">
+            <doc>Specify if the data comes from a calculation.</doc>
+        </field>
+        <field name="energy" type="NX_FLOAT" units="NX_ENERGY">
+            <doc>
+                The energy axis of the spectrum.
+            </doc>
+            <dimensions rank="1">
+                <dim index="1" value="nEnergy" />
+            </dimensions>
+        </field>
+        <field name="intensity" type="NX_FLOAT" units="NX_ANY">
+            <doc>
+                The processed absorption spectrum. The precise definition
+                depends on the acquisition mode (transmission, fluorescence
+                yield, electron yield, etc.)
+            </doc>
+            <dimensions rank="1">
+                <dim index="1" value="nEnergy" />
+            </dimensions>
+        </field>
+        <field name="intensity_errors" type="NX_FLOAT" units="NX_ANY" optional="true">
+            <doc>
+                The errors associated with the intensity of the spectrum.
+            </doc>
+            <dimensions rank="1">
+                <dim index="1" value="nEnergy" />
+            </dimensions>
+        </field>
         <group type="NXsample">
             <field name="name">
-                <doc>Descriptive name of sample</doc>
+                <doc>Descriptive name of the sample</doc>
             </field>
         </group>
-        <group type="NXmonitor">
-            <field name="mode">
-                <doc>
-                    Count to a preset value based on either clock time (timer)
-                    or received monitor counts (monitor).
-                </doc>
-                <enumeration>
-                    <item value="monitor"/>
-                    <item value="timer"/>
-                </enumeration>
-            </field>
-            <field name="preset" type="NX_FLOAT">
-                <doc>preset value for time or monitor</doc>
-            </field>
-            <field name="data" type="NX_NUMBER">
-		<doc>This field could be a link to ``/NXentry/NXinstrument/incoming_beam:NXdetector/data``</doc>
-              <dimensions rank="1">
-                <dim index="1" value="nP" />
-              </dimensions>
-            </field>
+        <choice name="mode">
+            <group type="NXtrans"/>
+            <group type="NXtfy"/>
+            <group type="NXpfy"/>
+            <group type="NXherfd"/>
+            <group type="NXtey"/>
+            <group type="NXpey"/>
+        </choice>
+        <group type="NXdata" optional="true">
+            <doc>Plot of the X-ray absorption intensity versus energy</doc>
+            <link name="energy" target="/NXentry/energy"/>
+            <link name="intensity" target="/NXentry/intensity"/>
         </group>
-        <group type="NXdata">
-          <link name="energy" target="/NXentry/NXinstrument/monochromator:NXmonochromator/energy"/>
-          <link name="absorbed_beam" target="/NXentry/NXinstrument/absorbed_beam:NXdetector/data"/>
-	  <field name="mode">
-	    <doc>Detection method used for observing the sample absorption (pick one from the enumerated list and spell exactly)</doc>
-              <enumeration>
-                <item value="Total Electron Yield" />
-                <item value="Partial Electron Yield" />
-                <item value="Auger Electron Yield" />
-                <item value="Fluorescence Yield" />
-                <item value="Transmission" />
-              </enumeration>
-          </field>
-        </group>
+
     </group>
 </definition>
