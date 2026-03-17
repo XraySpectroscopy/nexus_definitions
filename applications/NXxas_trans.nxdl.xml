@@ -111,18 +111,6 @@
                     </dimensions>
                 </field>
             </group>
-            <group type="NXdetector" name="iref" optional="true">
-                <doc>
-                    Detector measuring the reference intensity
-                    :math:`I_{ref}`, placed after a reference sample
-                    (typically a metal foil).
-                </doc>
-                <field name="data" type="NX_NUMBER">
-                    <dimensions rank="1">
-                        <dim index="1" value="nEnergy" />
-                    </dimensions>
-                </field>
-            </group>
         </group>
         <group type="NXprocess" optional="true">
             <doc>
