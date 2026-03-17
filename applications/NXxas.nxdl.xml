@@ -34,6 +34,9 @@
         <symbol name="nTransitions">
             <doc>Number of electronic transitions</doc>
         </symbol>
+        <symbol name="nChan">
+            <doc>Number of raw data channels</doc>
+        </symbol>
     </symbols>
     <doc>
       This is a generic application definition for X-ray absorption spectroscopy. Specialized definitions are available for different acquisition modes.
@@ -89,6 +92,26 @@
             <doc>Plot of the X-ray absorption intensity versus energy</doc>
             <link name="energy" target="/NXentry/energy"/>
             <link name="intensity" target="/NXentry/intensity"/>
+        </group>
+        <group type="NXcollection" optional="true">
+            <group type="NXdata" optional="true">
+                <doc>Table like data structure common in the XAS domain.</doc>
+                <field name="data" type="NX_NUMBER">
+                    <dimensions rank="2">
+                        <dim index="1" value="nChan" />
+                        <dim index="2" value="nEnergy" />
+                    </dimensions>
+                </field>
+                <field name="columns" type="NX_CHAR">
+                    <dimensions rank="1">
+                        <dim index="1" value="nEnergy" />
+                    </dimensions>
+                </field>
+                <group type="NXuser" name="data_collector" optional="true">
+                    <field name="name"></field>
+                    <field name="orcid"></field>
+                </group>
+            </group>
         </group>
     </group>
 </definition>
