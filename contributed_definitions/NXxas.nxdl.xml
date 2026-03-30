@@ -48,8 +48,8 @@
                 <item value="NXxas"></item>
             </enumeration>
         </field>
-        <group type="NXatom" name="element">
-            <doc>Excited element</doc>
+        <group type="NXatom" name="absorber">
+            <doc>Absorbing atom</doc>
             <field name="chemical_symbol" type="NX_CHAR"/>
         </group>
         <group type="NXedge" name="edge">
