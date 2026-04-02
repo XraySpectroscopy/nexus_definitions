@@ -127,9 +127,9 @@
         <group type="NXprocess" optional="true">
             <doc>
                 Description of how :ref:`intensity
-                &lt;/NXxas/ENTRY/intensity-field&gt;` was obtained from
-                the raw detector data (i0, itrans). When present, it allows
-                a third party to fully reproduce the data reduction.
+                &lt;/NXxas/ENTRY/intensity-field&gt;` was obtained from the raw
+                detector data (i0, itrans, and iref). When present, it allows a
+                third party to fully reproduce the data reduction.
             </doc>
             <field name="program" type="NX_CHAR" optional="true">
                 <doc>Name of the program used for processing.</doc>
