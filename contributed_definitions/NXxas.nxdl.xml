@@ -32,12 +32,6 @@
         <symbol name="nEnergy">
             <doc>Number of energy data points</doc>
         </symbol>
-        <symbol name="nTransitions">
-            <doc>Number of electronic transitions</doc>
-        </symbol>
-        <symbol name="nChan">
-            <doc>Number of raw data channels</doc>
-        </symbol>
     </symbols>
     <doc>
       This is a generic application definition for X-ray absorption
