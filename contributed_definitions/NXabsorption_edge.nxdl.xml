@@ -132,12 +132,12 @@
       <item value="P5"></item>
     </enumeration>
   </field>
-  <field name="energy" type="NX_FLOAT" units="NX_ENERGY">
+  <field name="energy" type="NX_FLOAT" units="NX_ENERGY" optional="true">
     <doc>
       Energy of the absorption edge.
     </doc>
   </field>
-  <group type="NXatom" minOccurs="0" maxOccurs="1">
+  <group name="atom" type="NXatom" minOccurs="0" maxOccurs="1">
     <doc>
       The atom whose core electron is excited at this absorption edge.
     </doc>

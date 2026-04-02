@@ -618,12 +618,12 @@
       <item value="Mz"></item>
     </enumeration>
   </field>
-  <field name="energy" type="NX_FLOAT" units="NX_ENERGY">
+  <field name="energy" type="NX_FLOAT" units="NX_ENERGY" optional="true">
     <doc>
       Energy of the emission line.
     </doc>
   </field>
-  <group type="NXatom" minOccurs="0" maxOccurs="1">
+  <group name="atom" type="NXatom" minOccurs="0" maxOccurs="1">
     <doc>
       The atom from which this emission line originates.
     </doc>
