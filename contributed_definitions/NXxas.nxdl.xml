@@ -26,7 +26,8 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://definition.nexusformat.org/nxdl/3.1 ../nxdl.xsd ">
     <symbols>
         <doc>
-		    The symbol(s) listed here will be used below to coordinate datasets with the same shape.
+		    The symbol(s) listed here will be used below to coordinate datasets
+		    with the same shape.
         </doc>
         <symbol name="nEnergy">
             <doc>Number of energy data points</doc>
@@ -39,7 +40,9 @@
         </symbol>
     </symbols>
     <doc>
-      This is a generic application definition for X-ray absorption spectroscopy. Specialized definitions are available for different acquisition modes.
+      This is a generic application definition for X-ray absorption
+      spectroscopy. Technique-specific application definitions extend this base
+      definition.
     </doc>
     <group type="NXentry">
         <field name="definition">
@@ -49,14 +52,32 @@
             </enumeration>
         </field>
         <group type="NXatom" name="absorber">
-            <doc>Absorbing atom</doc>
-            <field name="chemical_symbol" type="NX_CHAR"/>
+            <doc>
+                The atom whose core electron is excited by the incident X-rays.
+            </doc>
+            <field name="name" type="NX_CHAR"/>
         </group>
-        <group type="NXedge" name="edge">
-            <doc>Absorption edge</doc>
+        <group type="NXabsorption_edge" name="edge">
+            <doc>
+                The edge being probed, defined by the principal quantum number
+                and orbital symmetry of the photoionized electron (e.g. K, L1,
+                L2, L3). Together with the absorber uniquely identifies probed 
+                electronic transition. 
+            </doc>
         </group>
-        <field name="calculated" type="NX_BOOLEAN" units="NX_UNITLESS" optional="true">
-            <doc>Specify if the data commes from a calculation</doc>
+        <field name="spectrum_type" type="NX_CHAR" optional="false">
+            <doc>
+                The origin of the data. Use ``experimental`` for data acquired
+                at a beamline or laboratory instrument, ``theoretical`` for
+                spectra calculated/simulated using a computational tool, and
+                ``reconstructed`` for spectra derived from a linear combination
+                of reference components (e.g. PCA, MCR-ALS).
+            </doc>
+            <enumeration>
+                <item value="experimental"/>
+                <item value="theoretical"/>
+                <item value="reconstructed"/>
+            </enumeration>
         </field>
         <field name="energy" type="NX_FLOAT" units="NX_ENERGY">
             <doc>
