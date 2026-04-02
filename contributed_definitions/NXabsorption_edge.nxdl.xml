@@ -21,20 +21,20 @@
 #
 # For further information, see http://www.nexusformat.org
 -->
-<definition name="NXedge" type="group" extends="NXobject" category="base"
+<definition name="NXabsorption_edge" type="group" extends="NXobject" category="base"
   xmlns="http://definition.nexusformat.org/nxdl/3.1"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://definition.nexusformat.org/nxdl/3.1 ../nxdl.xsd">
   <doc>
     An absorption edge is a sharp discontinuity in the X-ray absorption spectrum
     of an element that occurs when the incident photon energy equals the binding
-    energy of a core electron, enabling photoionization of that shell. 
+    energy of a core electron, enabling photoionization of that shell.
   </doc>
   <field name="name" type="NX_CHAR" minOccurs="1" maxOccurs="1">
     <doc>
         Name of the absorption edge specified using
         `IUPAC notation`_ (e.g., ``K``, ``L2``, ``M5``), which identifies the
         shell and sub-shell from which the electron is ejected.
-        
+
         Correspondence between IUPAC and electronic level notations:
 
         .. list-table::
@@ -137,4 +137,14 @@
       Energy of the absorption edge.
     </doc>
   </field>
+  <group type="NXatom" minOccurs="0" maxOccurs="1">
+    <doc>
+      The atom whose core electron is excited at this absorption edge.
+    </doc>
+    <field name="name" type="NX_CHAR" minOccurs="0" maxOccurs="1">
+      <doc>
+        Chemical symbol of the element (e.g. ``Fe``, ``Cu``).
+      </doc>
+    </field>
+  </group>
 </definition>

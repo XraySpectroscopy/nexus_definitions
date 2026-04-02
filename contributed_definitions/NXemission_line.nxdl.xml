@@ -623,4 +623,14 @@
       Energy of the emission line.
     </doc>
   </field>
+  <group type="NXatom" minOccurs="0" maxOccurs="1">
+    <doc>
+      The atom from which this emission line originates.
+    </doc>
+    <field name="name" type="NX_CHAR" minOccurs="0" maxOccurs="1">
+      <doc>
+        Chemical symbol of the element (e.g. ``Fe``, ``Cu``).
+      </doc>
+    </field>
+  </group>
 </definition>
