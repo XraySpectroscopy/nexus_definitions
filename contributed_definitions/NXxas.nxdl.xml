@@ -59,19 +59,14 @@
                 identifies probed electronic transition. 
             </doc>
         </group>
-        <field name="spectrum_type" type="NX_CHAR" optional="false">
+        <field name="experimental" type="NX_BOOLEAN">
             <doc>
-                The origin of the data. Use ``experimental`` for data acquired
-                at a beamline or laboratory instrument, ``theoretical`` for
-                spectra calculated/simulated using a computational tool, and
-                ``reconstructed`` for spectra derived from a linear combination
-                of reference components (e.g. PCA, MCR-ALS).
+                Specify if the data comes from an experiment. Use ``true`` for
+                data acquired at a beamline or laboratory instrument, and
+                ``false`` for spectra calculated/simulated using a
+                computational tool, reconstructed from a linear combination
+                of reference components, etc.
             </doc>
-            <enumeration>
-                <item value="experimental"/>
-                <item value="theoretical"/>
-                <item value="reconstructed"/>
-            </enumeration>
         </field>
         <field name="energy" type="NX_FLOAT" units="NX_ENERGY">
             <doc>
