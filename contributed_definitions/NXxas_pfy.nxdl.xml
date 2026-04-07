@@ -113,8 +113,175 @@
                 <dim index="1" value="2" />
             </dimensions>
         </field>
+        <group name="beamline_coordinate_system" type="NXcoordinate_system" optional="true">
+            <doc>
+                Beamline coordinate system with the sample at the origin:
+                x along the beam, y horizontal, z opposite to gravity.
+            </doc>
+            <field name="origin">
+                <enumeration>
+                    <item value="sample"/>
+                </enumeration>
+            </field>
+            <field name="x_direction">
+                <enumeration>
+                    <item value="along incident beam"/>
+                </enumeration>
+            </field>
+            <field name="y_direction">
+                <enumeration>
+                    <item value="horizontal perpendicular to beam"/>
+                </enumeration>
+            </field>
+            <field name="z_direction">
+                <enumeration>
+                    <item value="opposite to gravity"/>
+                </enumeration>
+            </field>
+            <field name="x" type="NX_NUMBER" units="NX_LENGTH">
+                <enumeration>
+                    <item value="[1, 0, 0]"/>
+                </enumeration>
+            </field>
+            <field name="y" type="NX_NUMBER" units="NX_LENGTH">
+                <enumeration>
+                    <item value="[0, 1, 0]"/>
+                </enumeration>
+            </field>
+            <field name="z" type="NX_NUMBER" units="NX_LENGTH">
+                <enumeration>
+                    <item value="[0, 0, 1]"/>
+                </enumeration>
+            </field>
+            <field name="depends_on" type="NX_CHAR">
+                <doc>
+                    Should point to
+                    ``transformations/beam``.
+                </doc>
+            </field>
+            <group name="transformations" type="NXtransformations" optional="true">
+                <doc>
+                    Two rotations relating the beamline frame to
+                    the NeXus laboratory frame, plus direction
+                    vectors labeling beam and gravity.
+                </doc>
+                <field name="beam" type="NX_NUMBER" units="NX_UNITLESS">
+                    <doc>
+                        Direction of the incident beam in the beamline
+                        coordinate system.
+                    </doc>
+                    <attribute name="vector" type="NX_NUMBER">
+                        <enumeration>
+                            <item value="[1, 0, 0]"/>
+                        </enumeration>
+                    </attribute>
+                    <attribute name="depends_on">
+                        <enumeration>
+                            <item value="gravity"/>
+                        </enumeration>
+                    </attribute>
+                </field>
+                <field name="gravity" type="NX_NUMBER" units="NX_UNITLESS">
+                    <doc>
+                        Direction of gravity in the beamline coordinate
+                        system.
+                    </doc>
+                    <attribute name="vector" type="NX_NUMBER">
+                        <enumeration>
+                            <item value="[0, 0, -1]"/>
+                        </enumeration>
+                    </attribute>
+                    <attribute name="depends_on">
+                        <enumeration>
+                            <item value="rotate_gravity_to_minus_y"/>
+                        </enumeration>
+                    </attribute>
+                </field>
+                <field name="rotate_gravity_to_minus_y" type="NX_NUMBER" units="NX_ANGLE">
+                    <doc>
+                        Active rotation moving gravity from the
+                        beamline direction (-z) to the NeXus direction (-y).
+                    </doc>
+                    <attribute name="transformation_type">
+                        <enumeration>
+                            <item value="rotation"/>
+                        </enumeration>
+                    </attribute>
+                    <attribute name="vector" type="NX_NUMBER">
+                        <enumeration>
+                            <item value="[1, 0, 0]"/>
+                        </enumeration>
+                    </attribute>
+                    <attribute name="depends_on">
+                        <enumeration>
+                            <item value="rotate_beam_to_plus_z"/>
+                        </enumeration>
+                    </attribute>
+                </field>
+                <field name="rotate_beam_to_plus_z" type="NX_NUMBER" units="NX_ANGLE">
+                    <doc>
+                        Active rotation moving the beam from the
+                        beamline direction (+x) to the NeXus direction (+z).
+                    </doc>
+                    <attribute name="transformation_type">
+                        <enumeration>
+                            <item value="rotation"/>
+                        </enumeration>
+                    </attribute>
+                    <attribute name="vector" type="NX_NUMBER">
+                        <enumeration>
+                            <item value="[0, 1, 0]"/>
+                        </enumeration>
+                    </attribute>
+                    <attribute name="depends_on">
+                        <doc>
+                            Should point to ``.`` (the NeXus laboratory
+                            frame).
+                        </doc>
+                    </attribute>
+                </field>
+            </group>
+        </group>
+        <group type="NXsample">
+            <field name="depends_on" type="NX_CHAR" optional="true">
+                <doc>
+                    The sample is at the origin of the beamline
+                    coordinate system. Should point to
+                    ``/entry/beamline_coordinate_system``.
+                </doc>
+            </field>
+        </group>
         <group type="NXinstrument" optional="true">
-            <group type="NXdetector" name="i0">
+            <group name="beam" type="NXbeam" optional="true">
+                <doc>The incident X-ray beam.</doc>
+                <field name="depends_on" optional="true">
+                    <doc>
+                        Should point to
+                        ``beam/transformations/beam_direction``.
+                    </doc>
+                </field>
+                <group name="transformations" type="NXtransformations" optional="true">
+                    <field name="beam_direction" type="NX_NUMBER" units="NX_UNITLESS">
+                        <doc>
+                            Beam direction in the beamline coordinate
+                            system. The beam travels along +x.
+                        </doc>
+                        <attribute name="vector" type="NX_NUMBER">
+                            <enumeration>
+                                <item value="[1, 0, 0]"/>
+                            </enumeration>
+                        </attribute>
+                        <attribute name="depends_on">
+                            <doc>
+                                Should point to
+                                ``/entry/beamline_coordinate_system``
+                                or to ``/entry/sample``.
+                            </doc>
+                        </attribute>
+                    </field>
+                </group>
+            </group>
+            <group type="NXdetector" name="i0" recommended="true">
                 <doc>
                     Detector measuring the incident beam intensity :math:`I_0`.
                 </doc>
@@ -123,6 +290,36 @@
                         <dim index="1" value="nEnergy" />
                     </dimensions>
                 </field>
+                <field name="depends_on" type="NX_CHAR" optional="true">
+                    <doc>
+                        Should point to
+                        ``i0/transformations/i0_distance``.
+                    </doc>
+                </field>
+                <group name="transformations" type="NXtransformations" optional="true">
+                    <field name="i0_distance" type="NX_NUMBER" units="NX_LENGTH">
+                        <doc>
+                            Distance from the sample to the I0 detector,
+                            measured upstream along the beam (negative x
+                            direction in the beamline frame).
+                        </doc>
+                        <attribute name="transformation_type">
+                            <enumeration>
+                                <item value="translation"/>
+                            </enumeration>
+                        </attribute>
+                        <attribute name="vector" type="NX_NUMBER">
+                            <enumeration>
+                                <item value="[-1, 0, 0]"/>
+                            </enumeration>
+                        </attribute>
+                        <attribute name="depends_on">
+                            <doc>
+                                Should point to ``/entry/sample``.
+                            </doc>
+                        </attribute>
+                    </field>
+                </group>
             </group>
             <group type="NXgrating" name="grating" optional="true">
                 <doc>
@@ -136,6 +333,86 @@
                     polar angles must therefore match those of
                     ``if/transformations``, and only the distance differs.
                 </doc>
+                <field name="depends_on" type="NX_CHAR" optional="true">
+                    <doc>
+                        Should point to the last transformation in the
+                        chain, i.e.
+                        ``transformations/grating_distance``.
+                    </doc>
+                </field>
+                <group name="transformations" type="NXtransformations" optional="true">
+                    <doc>
+                        Transformation chain placing the grating relative
+                        to the sample. The azimuthal and polar angles must
+                        be equal to those of the fluorescence detector
+                        (``if``) to ensure colinearity.
+                    </doc>
+                    <field name="grating_distance" type="NX_NUMBER" units="NX_LENGTH">
+                        <doc>
+                            Distance from the sample to the grating along
+                            the sample-to-detector direction.
+                        </doc>
+                        <attribute name="transformation_type">
+                            <enumeration>
+                                <item value="translation"/>
+                            </enumeration>
+                        </attribute>
+                        <attribute name="vector" type="NX_NUMBER">
+                            <enumeration>
+                                <item value="[1, 0, 0]"/>
+                            </enumeration>
+                        </attribute>
+                        <attribute name="depends_on">
+                            <enumeration>
+                                <item value="grating_polar_angle"/>
+                            </enumeration>
+                        </attribute>
+                    </field>
+                    <field name="grating_polar_angle" type="NX_NUMBER" units="NX_ANGLE">
+                        <doc>
+                            Polar (elevation) angle of the grating above
+                            the horizontal beam plane. Must equal
+                            ``if/transformations/if_polar_angle``.
+                        </doc>
+                        <attribute name="transformation_type">
+                            <enumeration>
+                                <item value="rotation"/>
+                            </enumeration>
+                        </attribute>
+                        <attribute name="vector" type="NX_NUMBER">
+                            <enumeration>
+                                <item value="[0, -1, 0]"/>
+                            </enumeration>
+                        </attribute>
+                        <attribute name="depends_on">
+                            <enumeration>
+                                <item value="grating_azimuthal_angle"/>
+                            </enumeration>
+                        </attribute>
+                    </field>
+                    <field name="grating_azimuthal_angle" type="NX_NUMBER" units="NX_ANGLE">
+                        <doc>
+                            Azimuthal (horizontal) angle of the grating
+                            from the incident beam direction. Must equal
+                            ``if/transformations/if_azimuthal_angle``.
+                        </doc>
+                        <attribute name="transformation_type">
+                            <enumeration>
+                                <item value="rotation"/>
+                            </enumeration>
+                        </attribute>
+                        <attribute name="vector" type="NX_NUMBER">
+                            <enumeration>
+                                <item value="[0, 0, 1]"/>
+                            </enumeration>
+                        </attribute>
+                        <attribute name="depends_on">
+                            <doc>
+                                Should point to ``/entry/sample``.
+                            </doc>
+                        </attribute>
+                    </field>
+                </group>
             </group>
             <group type="NXdetector" name="if" recommended="true">
                 <doc>
@@ -165,6 +442,89 @@
                         <dim index="1" value="nEnergy" />
                     </dimensions>
                 </field>
+                <field name="depends_on" type="NX_CHAR" optional="true">
+                    <doc>
+                        Should point to the last transformation in the
+                        chain, i.e.
+                        ``transformations/if_distance``.
+                    </doc>
+                </field>
+                <group name="transformations" type="NXtransformations" optional="true">
+                    <doc>
+                        Transformation chain placing the fluorescence
+                        detector relative to the sample: azimuthal angle,
+                        polar angle, then distance. These angles are
+                        required to compute self-absorption corrections.
+                    </doc>
+                    <field name="if_distance" type="NX_NUMBER" units="NX_LENGTH">
+                        <doc>
+                            Distance from the sample to the fluorescence
+                            detector (or spectrometer entrance).
+                        </doc>
+                        <attribute name="transformation_type">
+                            <enumeration>
+                                <item value="translation"/>
+                            </enumeration>
+                        </attribute>
+                        <attribute name="vector" type="NX_NUMBER">
+                            <enumeration>
+                                <item value="[1, 0, 0]"/>
+                            </enumeration>
+                        </attribute>
+                        <attribute name="depends_on">
+                            <enumeration>
+                                <item value="if_polar_angle"/>
+                            </enumeration>
+                        </attribute>
+                    </field>
+                    <field name="if_polar_angle" type="NX_NUMBER" units="NX_ANGLE">
+                        <doc>
+                            Polar (elevation) angle of the detector above
+                            the horizontal beam plane. A value of 0 means
+                            the detector is in the horizontal plane; 90
+                            degrees means it is directly above the sample.
+                        </doc>
+                        <attribute name="transformation_type">
+                            <enumeration>
+                                <item value="rotation"/>
+                            </enumeration>
+                        </attribute>
+                        <attribute name="vector" type="NX_NUMBER">
+                            <enumeration>
+                                <item value="[0, -1, 0]"/>
+                            </enumeration>
+                        </attribute>
+                        <attribute name="depends_on">
+                            <enumeration>
+                                <item value="if_azimuthal_angle"/>
+                            </enumeration>
+                        </attribute>
+                    </field>
+                    <field name="if_azimuthal_angle" type="NX_NUMBER" units="NX_ANGLE">
+                        <doc>
+                            Azimuthal (horizontal) angle of the detector
+                            from the incident beam direction. Rotation
+                            around the vertical z-axis. Typically around
+                            90 degrees to minimize elastic scattering
+                            background.
+                        </doc>
+                        <attribute name="transformation_type">
+                            <enumeration>
+                                <item value="rotation"/>
+                            </enumeration>
+                        </attribute>
+                        <attribute name="vector" type="NX_NUMBER">
+                            <enumeration>
+                                <item value="[0, 0, 1]"/>
+                            </enumeration>
+                        </attribute>
+                        <attribute name="depends_on">
+                            <doc>
+                                Should point to ``/entry/sample``.
+                            </doc>
+                        </attribute>
+                    </field>
+                </group>
             </group>
         </group>
         <group type="NXcollection" optional="true">
