@@ -33,7 +33,10 @@
             <doc>Number of energy data points</doc>
         </symbol>
         <symbol name="nChannels">
-            <doc>Number of detector channels</doc>
+            <doc>
+                Number of selected detector channels within the
+                emission energy window
+            </doc>
         </symbol>
         <symbol name="nY">
             <doc>
@@ -62,19 +65,17 @@
         emitted photons by energy onto a 2D detector, providing
         higher energy resolution.
 
-      The absorption coefficient is proportional to:
+      The top-level :ref:`intensity &lt;/NXxas/ENTRY/intensity-field&gt;`
+      field stores the ratio :math:`I_f/I_0`, where :math:`I_f` is the
+      selected fluorescence intensity and :math:`I_0` is the incident beam
+      intensity. This ratio is proportional to the absorption coefficient:
 
       .. math:: \mu(E) \propto I_f/I_0
 
-      where :math:`I_f` is the selected fluorescence intensity and
-      :math:`I_0` is the incident beam intensity. PFY may be affected by
-      detector dead-time and self-absorption effects.
-
-      The top-level :ref:`intensity &lt;/NXxas/ENTRY/intensity-field&gt;`
-      field contains the processed absorption coefficient. When the raw
-      detector data and processing steps are available, they can be stored
-      in the optional ``NXinstrument``, ``NXcollection``, and ``NXprocess``
-      groups, enabling full reproducibility of the data reduction.
+      PFY may be affected by detector dead-time and self-absorption effects.
+      When the raw detector data and processing steps are available, they can be
+      stored in the optional ``NXinstrument``, ``NXcollection``, and
+      ``NXprocess`` groups, enabling full reproducibility of the data reduction.
     </doc>
     <group type="NXentry">
         <field name="definition">
@@ -85,22 +86,33 @@
         </field>
         <field name="intensity" type="NX_FLOAT" units="NX_ANY">
             <doc>
-                The absorption coefficient :math:`\mu(E) \propto I_f/I_0`,
-                where :math:`I_f` is the selected fluorescence intensity
-                (dead-time corrected when using an energy-dispersive detector,
-                or spectrometer-integrated when using a grating spectrometer).
+                The ratio :math:`I_f/I_0`, where :math:`I_f` is the selected
+                fluorescence intensity and :math:`I_0` is the incident beam
+                intensity. 
             </doc>
             <dimensions rank="1">
                 <dim index="1" value="nEnergy" />
             </dimensions>
         </field>
-        <group type="NXemission_lines" name="emission_lines" minOccurs="1" maxOccurs="unbounded" optional="true">
+        <group name="emission_lines" type="NXemission_lines" minOccurs="1" maxOccurs="unbounded">
             <doc>
                 The emission line(s) selected for the partial fluorescence
                 yield measurement, whether via a channel range or a
-                grating spectrometer.
+                grating-based spectrometer.
             </doc>
         </group>
+        <field name="emission_energy_window" type="NX_FLOAT" units="NX_ENERGY">
+            <doc>
+                The lower and upper bounds :math:`[e_{min}, e_{max}]` of the
+                detected emission energy window. This is the energy range
+                over which fluorescence photons are accepted, whether
+                defined by a detector channel range or a spectrometer
+                region of interest.
+            </doc>
+            <dimensions rank="1">
+                <dim index="1" value="2" />
+            </dimensions>
+        </field>
         <group type="NXinstrument" optional="true">
             <group type="NXdetector" name="i0">
                 <doc>
@@ -115,19 +127,24 @@
             <group type="NXgrating" name="grating" optional="true">
                 <doc>
                     Diffraction grating used to select the emission energy
-                    in a grating spectrometer. Present only when a grating
+                    in a grating-based spectrometer. Present only when a grating
                     spectrometer is used instead of an energy-dispersive
                     detector.
+
+                    The grating lies on the line connecting the sample and
+                    the fluorescence detector (``if``): the azimuthal and
+                    polar angles must therefore match those of
+                    ``if/transformations``, and only the distance differs.
                 </doc>
             </group>
-            <group type="NXdetector" name="if">
+            <group type="NXdetector" name="if" recommended="true">
                 <doc>
                     Fluorescence detector measuring :math:`I_f`. When using an
                     energy-dispersive detector, ``data`` holds the intensity
                     integrated over the selected detector channels. When using a
-                    grating spectrometer, ``data`` holds the ROI integrated on the
-                    spectrometer detector. In both cases the data may be corrected
-                    for dead-time and self-absorption.
+                    grating-based spectrometer, ``data`` holds the ROI integrated 
+                    on the spectrometer detector. In both cases the data may be 
+                    corrected for dead-time and self-absorption.
                 </doc>
                 <field name="data" type="NX_NUMBER">
                     <dimensions rank="1">
@@ -160,10 +177,12 @@
             </doc>
             <field name="detector_channels" type="NX_FLOAT" optional="true">
                 <doc>
-                    Raw channel counts per incident energy point for an
-                    energy-dispersive detector. Axis 0 is the energy scan
-                    axis; axis 1 enumerates the detector channels. Each
-                    value is the count in that channel for one energy point.
+                    Raw channel counts per incident energy point for the
+                    selected channels of an energy-dispersive detector.
+                    Only the channels within the emission energy window
+                    are stored. Axis 0 is the energy scan axis; axis 1
+                    enumerates the selected channels. Each value is the
+                    count in that channel for one energy point.
                 </doc>
                 <dimensions rank="2">
                     <dim index="1" value="nEnergy" />
