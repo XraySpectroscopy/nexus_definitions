@@ -59,7 +59,7 @@
                 identifies probed electronic transition.
             </doc>
         </group>
-        <field name="experimental" type="NX_BOOLEAN">
+        <field name="is_experimental" type="NX_BOOLEAN">
             <doc>
                 Specify if the data comes from an experiment. Use ``true`` for
                 data acquired at a beamline or laboratory instrument, and
