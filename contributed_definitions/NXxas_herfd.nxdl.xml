@@ -34,6 +34,12 @@
       The spectral shape depends on the emission energy, making the
       emission line and emission energy mandatory metadata.
 
+      The top-level :ref:`intensity &lt;/NXxas/ENTRY/intensity-field&gt;`
+      field stores the ratio :math:`I_f/I_0`, where :math:`I_f` is the
+      fluorescence intensity diffracted by the crystal analyzer(s) and
+      :math:`I_0` is the incident beam intensity. This ratio is
+      proportional to the absorption coefficient:
+
       .. math:: \mu(E) \propto I_f/I_0
 
       The spectrometer uses Rowland circle geometry (Johann or Johansson
@@ -49,15 +55,15 @@
         </field>
         <field name="intensity" type="NX_FLOAT" units="NX_ANY">
             <doc>
-                The absorption coefficient :math:`\mu(E) \propto I_f/I_0`,
-                measured at a specific emission energy with high energy
-                resolution.
+                The ratio :math:`I_f/I_0`, where :math:`I_f` is the
+                fluorescence intensity diffracted by the crystal analyzer(s)
+                and :math:`I_0` is the incident beam intensity.
             </doc>
             <dimensions rank="1">
                 <dim index="1" value="nEnergy" />
             </dimensions>
         </field>
-        <group type="NXemission_line" name="emission_line">
+        <group name="emission_line" type="NXemission_line">
             <doc>
                 The emission line at which the HERFD spectrum is measured.
             </doc>
@@ -249,7 +255,7 @@
                     </enumeration>
                 </field>
             </group>
-            <group type="NXdetector" name="i0" optional="true">
+            <group type="NXdetector" name="i0" recommended="true">
                 <doc>
                     Detector measuring the incident beam intensity
                     :math:`I_0`, positioned upstream of the sample along
@@ -439,7 +445,7 @@
                     </field>
                 </group>
             </group>
-            <group type="NXdetector" name="if" optional="true">
+            <group type="NXdetector" name="if" recommended="true">
                 <doc>
                     Detector measuring the fluorescence intensity
                     :math:`I_f` diffracted by the crystal analyzer(s).
