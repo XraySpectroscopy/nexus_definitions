@@ -55,8 +55,8 @@
             <doc>
                 The absorption edge being probed, defined by the principal
                 quantum number and orbital symmetry of the photoionized electron
-                (e.g. K, L1, L2, L3). Together with the absorber uniquely
-                identifies probed electronic transition. 
+                (e.g. K, L1, L2, L3, L2,3). Together with the absorber uniquely
+                identifies probed electronic transition.
             </doc>
         </group>
         <field name="experimental" type="NX_BOOLEAN">
