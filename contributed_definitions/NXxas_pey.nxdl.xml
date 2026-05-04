@@ -37,7 +37,7 @@
       sensitivity and selectivity compared to total electron yield.
 
       The top-level :ref:`intensity &lt;/NXxas/ENTRY/intensity-field&gt;`
-      field contains the processed absorption coefficient. When the raw
+      field stores the ratio :math:`I_{ey}/I_0`. When the raw
       detector data and processing steps are available, they can be stored
       in the optional ``NXinstrument`` and ``NXprocess`` groups,
       enabling full reproducibility of the data reduction.
