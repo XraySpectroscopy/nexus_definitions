@@ -68,7 +68,7 @@
                     </dimensions>
                 </field>
             </group>
-            <group type="NXdetector" name="if">
+            <group type="NXdetector" name="ifluor">
                 <doc>
                     Detector measuring the total fluorescence emission
                     :math:`I_f`.

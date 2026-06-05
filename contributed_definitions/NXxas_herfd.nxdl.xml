@@ -440,7 +440,7 @@
                     </field>
                 </group>
             </group>
-            <group type="NXdetector" name="if" recommended="true">
+            <group type="NXdetector" name="ifluor" recommended="true">
                 <doc>
                     Detector measuring the fluorescence intensity
                     :math:`I_f` diffracted by the crystal analyzer(s).

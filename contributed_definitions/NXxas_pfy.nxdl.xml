@@ -414,7 +414,7 @@
                     </field>
                 </group>
             </group>
-            <group type="NXdetector" name="if" recommended="true">
+            <group type="NXdetector" name="ifluor" recommended="true">
                 <doc>
                     Fluorescence detector measuring :math:`I_f`. When using an
                     energy-dispersive detector, ``data`` holds the intensity
