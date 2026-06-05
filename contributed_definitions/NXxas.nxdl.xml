@@ -45,9 +45,9 @@
                 <item value="NXxas"></item>
             </enumeration>
         </field>
-        <group type="NXatom" name="absorber">
+        <group type="NXatom" name="element">
             <doc>
-                The atom whose core electron is excited by the incident X-rays.
+                The atom being probed by the incident X-rays.
             </doc>
             <field name="name" type="NX_CHAR"/>
         </group>
@@ -55,7 +55,7 @@
             <doc>
                 The absorption edge being probed, defined by the principal
                 quantum number and orbital symmetry of the photoionized electron
-                (e.g. K, L1, L2, L3, L2,3). Together with the absorber uniquely
+                (e.g. K, L1, L2, L3, L2,3). Together with the element uniquely
                 identifies probed electronic transition.
             </doc>
         </group>
