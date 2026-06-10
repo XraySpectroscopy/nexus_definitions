@@ -100,6 +100,9 @@
                 yield measurement, whether via a channel range or a
                 grating-based spectrometer.
             </doc>
+            <group type="NXemission_line">
+                <field name="name"/>
+            </group>
         </group>
         <field name="emission_energy_window" type="NX_FLOAT" units="NX_ENERGY">
             <doc>

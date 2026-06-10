@@ -67,6 +67,7 @@
             <doc>
                 The emission line at which the HERFD spectrum is measured.
             </doc>
+            <field name="name"/>
         </group>
         <field name="emission_energy" type="NX_FLOAT" units="NX_ENERGY">
             <doc>
