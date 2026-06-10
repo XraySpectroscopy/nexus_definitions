@@ -618,19 +618,14 @@
       <item value="Mz"></item>
     </enumeration>
   </field>
-  <field name="energy" type="NX_FLOAT" units="NX_ENERGY" optional="true">
+  <field name="energy" type="NX_FLOAT" units="NX_ENERGY">
     <doc>
       Energy of the emission line.
     </doc>
   </field>
-  <group name="atom" type="NXatom" minOccurs="0" maxOccurs="1">
+  <group name="element" type="NXatom" minOccurs="0" maxOccurs="1">
     <doc>
-      The atom from which this emission line originates.
+      The element that emits this line.
     </doc>
-    <field name="name" type="NX_CHAR" minOccurs="0" maxOccurs="1">
-      <doc>
-        Chemical symbol of the element (e.g. ``Fe``, ``Cu``).
-      </doc>
-    </field>
   </group>
 </definition>
