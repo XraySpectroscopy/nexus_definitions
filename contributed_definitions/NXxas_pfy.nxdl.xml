@@ -162,7 +162,7 @@
                     ``transformations/beam``.
                 </doc>
             </field>
-            <group name="transformations" type="NXtransformations" optional="true">
+            <group name="transformations" type="NXtransformations">
                 <doc>
                     Two rotations relating the beamline frame to
                     the NeXus laboratory frame, plus direction
