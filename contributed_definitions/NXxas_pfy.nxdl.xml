@@ -73,6 +73,7 @@
       .. math:: \mu(E) \propto I_f/I_0
 
       PFY may be affected by detector dead-time and self-absorption effects.
+      
       When the raw detector data and processing steps are available, they can be
       stored in the optional ``NXinstrument``, ``NXcollection``, and
       ``NXprocess`` groups, enabling full reproducibility of the data reduction.

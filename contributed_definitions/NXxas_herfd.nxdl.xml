@@ -24,6 +24,18 @@
 <definition name="NXxas_herfd" extends="NXxas" type="group" category="application"
     xmlns="http://definition.nexusformat.org/nxdl/3.1"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://definition.nexusformat.org/nxdl/3.1 ../nxdl.xsd ">
+    <symbols>
+        <doc>
+            The symbol(s) listed here will be used below to coordinate datasets
+            with the same shape.
+        </doc>
+        <symbol name="nEnergy">
+            <doc>Number of energy data points</doc>
+        </symbol>
+        <symbol name="nAnalyzers">
+            <doc>Number of crystal analyzers in the spectrometer</doc>
+        </symbol>
+    </symbols>
     <doc>
       High-energy resolution fluorescence detection (HERFD) is a particular
       case of partial fluorescence yield measured with a crystal analyzer
@@ -45,6 +57,10 @@
       The spectrometer uses Rowland circle geometry (Johann or Johansson
       type). Multiple crystal analyzers may be arranged at different
       horizontal angles around the sample to increase solid angle coverage.
+
+      When the raw detector data and processing steps are available, they can be
+      stored in the optional ``NXinstrument``, ``NXcollection``, and
+      ``NXprocess`` groups, enabling full reproducibility of the data reduction.
     </doc>
     <group type="NXentry">
         <field name="definition">
@@ -323,7 +339,7 @@
                     </field>
                 </group>
             </group>
-            <group type="NXcrystal" name="ANALYZERCRYSTAL" nameType="partial">
+            <group type="NXcrystal" name="analyzerCRYSTAL" nameType="partial">
                 <doc>
                     Crystal analyzer on the Rowland circle. For
                     multi-crystal spectrometers, use one group per
@@ -340,7 +356,7 @@
                         Miller indices (hkl) values of the nominal
                         reflection.
                     </doc>
-                    <dimensions>
+                    <dimensions rank="1">
                         <dim index="1" value="3"/>
                     </dimensions>
                 </field>
