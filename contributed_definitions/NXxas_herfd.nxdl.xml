@@ -68,7 +68,7 @@
             <enumeration>
                 <item value="NXxas_herfd"/>
             </enumeration>
-        </field>
+        </field>       
         <field name="intensity" type="NX_FLOAT" units="NX_ANY">
             <doc>
                 The ratio :math:`I_f/I_0`, where :math:`I_f` is the
@@ -578,6 +578,27 @@
                     </field>
                 </group>
             </group>
+        </group>
+        <group type="NXcollection" optional="true">
+            <doc>
+                Raw data as written by the acquisition software,
+                preserved without modification to allow independent
+                reprocessing.
+            </doc>
+            <field name="raw_data" type="NX_FLOAT" optional="true">
+                <doc>
+                    Raw fluorescence counts per incident energy point for
+                    each crystal analyzer, before normalization by the
+                    incident beam intensity and summation over analyzers.
+                    Axis 0 is the energy scan axis; axis 1 enumerates the
+                    crystal analyzers, in the same order as the
+                    ``analyzerCRYSTAL`` groups.
+                </doc>
+                <dimensions rank="2">
+                    <dim index="1" value="nEnergy" />
+                    <dim index="2" value="nAnalyzers" />
+                </dimensions>
+            </field>
         </group>
         <group type="NXprocess" optional="true">
             <doc>
