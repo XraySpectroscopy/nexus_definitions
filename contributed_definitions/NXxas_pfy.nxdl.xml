@@ -260,7 +260,7 @@
                 <field name="depends_on" optional="true">
                     <doc>
                         Should point to
-                        ``beam/transformations/beam_direction``.
+                        ``transformations/beam_direction``.
                     </doc>
                 </field>
                 <group name="transformations" type="NXtransformations" optional="true">
@@ -296,7 +296,7 @@
                 <field name="depends_on" type="NX_CHAR" optional="true">
                     <doc>
                         Should point to
-                        ``i0/transformations/i0_distance``.
+                        ``transformations/i0_distance``.
                     </doc>
                 </field>
                 <group name="transformations" type="NXtransformations" optional="true">
