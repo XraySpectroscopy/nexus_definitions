@@ -555,7 +555,8 @@
                         </attribute>
                         <attribute name="depends_on">
                             <doc>
-                                Should point to ``/entry/sample``.
+                                Should point to
+                                ``/entry/beamline_coordinate_system``.
                             </doc>
                         </attribute>
                     </field>
