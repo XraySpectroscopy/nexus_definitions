@@ -546,6 +546,22 @@
             <field name="date" type="NX_DATE_TIME" optional="true">
                 <doc>Date and time of processing.</doc>
             </field>
+            <group name="note" type="NXnote" optional="true">
+                <doc>
+                    Python code reproducing the top-level :ref:`intensity
+                    &lt;/NXxas/ENTRY/intensity-field&gt;` from the raw
+                    data.
+                </doc>
+                <field name="type">
+                    <doc>Mime content type of the note data field.</doc>
+                    <enumeration>
+                        <item value="text/x-python"/>
+                    </enumeration>
+                </field>
+                <field name="data" type="NX_CHAR">
+                    <doc>The Python code.</doc>
+                </field>
+            </group>
         </group>
     </group>
 </definition>
