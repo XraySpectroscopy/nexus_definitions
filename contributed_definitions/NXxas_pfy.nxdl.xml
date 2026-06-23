@@ -249,10 +249,40 @@
             <field name="depends_on" type="NX_CHAR" optional="true">
                 <doc>
                     The sample is at the origin of the beamline
-                    coordinate system. Should point to
-                    ``/entry/beamline_coordinate_system``.
+                    coordinate system, rotated about the vertical
+                    axis. Should point to
+                    ``transformations/sample_rotation``.
                 </doc>
             </field>
+            <group name="transformations" type="NXtransformations" optional="true">
+                <doc>
+                    Orientation of the sample in the beamline
+                    coordinate system.
+                </doc>
+                <field name="sample_rotation" type="NX_NUMBER" units="NX_ANGLE">
+                    <doc>
+                        Rotation of the sample about the vertical axis,
+                        orienting the sample surface between the incident beam
+                        and the fluorescence detector.
+                    </doc>
+                    <attribute name="transformation_type">
+                        <enumeration>
+                            <item value="rotation"/>
+                        </enumeration>
+                    </attribute>
+                    <attribute name="vector" type="NX_NUMBER">
+                        <enumeration>
+                            <item value="[0, 0, 1]"/>
+                        </enumeration>
+                    </attribute>
+                    <attribute name="depends_on">
+                        <doc>
+                            Should point to
+                            ``/entry/beamline_coordinate_system``.
+                        </doc>
+                    </attribute>
+                </field>
+            </group>
         </group>
         <group type="NXinstrument" optional="true">
             <group name="beam" type="NXbeam" optional="true">
@@ -277,8 +307,7 @@
                         <attribute name="depends_on">
                             <doc>
                                 Should point to
-                                ``/entry/beamline_coordinate_system``
-                                or to ``/entry/sample``.
+                                ``/entry/beamline_coordinate_system``.
                             </doc>
                         </attribute>
                     </field>
@@ -318,7 +347,8 @@
                         </attribute>
                         <attribute name="depends_on">
                             <doc>
-                                Should point to ``/entry/sample``.
+                                Should point to
+                                ``/entry/beamline_coordinate_system``.
                             </doc>
                         </attribute>
                     </field>
@@ -411,7 +441,8 @@
                         </attribute>
                         <attribute name="depends_on">
                             <doc>
-                                Should point to ``/entry/sample``.
+                                Should point to
+                                ``/entry/beamline_coordinate_system``.
                             </doc>
                         </attribute>
                     </field>
@@ -523,7 +554,8 @@
                         </attribute>
                         <attribute name="depends_on">
                             <doc>
-                                Should point to ``/entry/sample``.
+                                Should point to
+                                ``/entry/beamline_coordinate_system``.
                             </doc>
                         </attribute>
                     </field>
