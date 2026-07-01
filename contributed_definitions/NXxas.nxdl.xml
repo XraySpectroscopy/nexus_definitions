@@ -109,14 +109,6 @@
                 <dim index="2" value="nEnergy" />
             </dimensions>
         </field>
-        <field name="time" type="NX_FLOAT" units="NX_TIME" optional="true">
-            <doc>
-                Time of each spectrum, relative to ``start_time``.
-            </doc>
-            <dimensions rank="1">
-                <dim index="1" value="nP" />
-            </dimensions>
-        </field>
         <group type="NXsample">
             <field name="name">
                 <doc>Descriptive name of the sample</doc>
