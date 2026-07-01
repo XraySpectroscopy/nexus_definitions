@@ -6,6 +6,7 @@ build:
     python: "3.14"
   commands:
     - pip install -r requirements.txt
+    - make clean
     - make prepare
     - make html
     - mkdir -p $READTHEDOCS_OUTPUT/html
