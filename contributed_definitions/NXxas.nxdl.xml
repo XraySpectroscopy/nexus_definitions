@@ -58,9 +58,9 @@
                 <item value="NXxas"></item>
             </enumeration>
         </field>
-        <group type="NXatom" name="element">
+        <group type="NXelement" name="element">
             <doc>
-                The atom being probed by the incident X-rays.
+                The element being probed by the incident X-rays.
             </doc>
             <field name="name" type="NX_CHAR"/>
         </group>
