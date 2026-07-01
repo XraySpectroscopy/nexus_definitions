@@ -37,8 +37,8 @@
       The top-level :ref:`intensity &lt;/NXxas/ENTRY/intensity-field&gt;`
       field contains the processed absorption coefficient. When the raw
       detector data and processing steps are available, they can be stored
-      in the optional ``NXinstrument`` and ``NXprocess`` groups,
-      enabling full reproducibility of the data reduction.
+      in the optional ``NXinstrument``, ``NXcollection``, and ``NXprocess``
+      groups, enabling full reproducibility of the data reduction.
     </doc>
     <group type="NXentry">
         <field name="definition">
@@ -55,8 +55,15 @@
                 <dim index="1" value="nEnergy" />
             </dimensions>
         </field>
-        <group type="NXinstrument" optional="true">
-            <group type="NXsource">
+        <group type="NXinstrument" recommended="true">
+            <doc>
+                The ``data`` field of each detector below holds the intensity
+                used to compute the absorption coefficient and may already
+                include corrections. If the uncorrected values are kept, they
+                are archived in the ``NXcollection`` group and the corrections
+                are described in ``NXprocess``.
+            </doc>
+            <group type="NXsource" recommended="true">
                 <field name="type"/>
                 <field name="name"/>
                 <field name="probe">
@@ -124,6 +131,13 @@
                 </field>
             </group>
         </group>
+        <group type="NXcollection" optional="true">
+            <doc>
+                Raw data as written by the acquisition software,
+                preserved without modification to allow independent
+                reprocessing.
+            </doc>
+        </group>
         <group type="NXprocess" optional="true">
             <doc>
                 Description of how :ref:`intensity
@@ -140,6 +154,35 @@
             <field name="date" type="NX_DATE_TIME" optional="true">
                 <doc>Date and time of processing.</doc>
             </field>
+            <field name="sequence_index" type="NX_POSINT" optional="true">
+                <doc>
+                    Order of this step when several NXprocess groups
+                    describe a sequence of corrections.
+                </doc>
+            </field>
+            <group type="NXparameters" name="parameters" optional="true">
+                <doc>
+                    Validated parameters of the corrections applied, for
+                    example energy calibration, deglitching, incident-beam
+                    normalization, or scan merging. Each parameter should
+                    carry a units attribute where applicable.
+                </doc>
+            </group>
+            <group name="note" type="NXnote" optional="true">
+                <doc>
+                    Code or notes reproducing the top-level :ref:`intensity
+                    &lt;/NXxas/ENTRY/intensity-field&gt;` from the raw data.
+                </doc>
+                <field name="type">
+                    <doc>Mime content type of the note data field.</doc>
+                    <enumeration>
+                        <item value="text/x-python"/>
+                    </enumeration>
+                </field>
+                <field name="data" type="NX_CHAR">
+                    <doc>The reproduction code or notes.</doc>
+                </field>
+            </group>
         </group>
     </group>
 </definition>
