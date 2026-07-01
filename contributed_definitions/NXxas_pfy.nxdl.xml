@@ -73,7 +73,7 @@
       .. math:: \mu(E) \propto I_f/I_0
 
       PFY may be affected by detector dead-time and self-absorption effects.
-      
+
       When the raw detector data and processing steps are available, they can be
       stored in the optional ``NXinstrument``, ``NXcollection``, and
       ``NXprocess`` groups, enabling full reproducibility of the data reduction.
@@ -95,15 +95,15 @@
                 <dim index="1" value="nEnergy" />
             </dimensions>
         </field>
-        <group name="emission_lines" type="NXemission_lines" minOccurs="1" maxOccurs="unbounded">
+        <group name="LINE_emission_line" nameType="partial" type="NXemission_line" minOccurs="1" maxOccurs="unbounded">
             <doc>
                 The emission line(s) selected for the partial fluorescence
                 yield measurement, whether via a channel range or a
-                grating-based spectrometer.
+                grating-based spectrometer. For multiple lines use one
+                group per line (e.g. ``ka1_emission_line``,
+                ``kb1_emission_line``).
             </doc>
-            <group type="NXemission_line">
-                <field name="name"/>
-            </group>
+            <field name="name"/>
         </group>
         <field name="emission_energy_window" type="NX_FLOAT" units="NX_ENERGY">
             <doc>
@@ -286,6 +286,14 @@
             </group>
         </group>
         <group type="NXinstrument" optional="true">
+            <doc>
+                The ``data`` field of each detector below holds the intensity
+                used in the analysis and may already include corrections (for
+                example dead-time, self-absorption, or detector-channel or ROI
+                integration). If the uncorrected values are kept, they are
+                archived in the ``NXcollection`` group and the corrections are
+                described in ``NXprocess``.
+            </doc>
             <group name="beam" type="NXbeam" optional="true">
                 <doc>The incident X-ray beam.</doc>
                 <field name="depends_on" optional="true">
