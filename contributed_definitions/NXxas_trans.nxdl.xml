@@ -51,8 +51,9 @@
             <doc>
                 The absorption coefficient :math:`\mu(E)t = -\ln(I/I_0)`.
             </doc>
-            <dimensions rank="1">
-                <dim index="1" value="nEnergy" />
+            <dimensions rank="dataRank">
+                <dim index="1" value="nP" />
+                <dim index="2" value="nEnergy" />
             </dimensions>
         </field>
         <group type="NXinstrument" recommended="true">
@@ -102,8 +103,9 @@
                     :math:`I_0`.
                 </doc>
                 <field name="data" type="NX_NUMBER">
-                    <dimensions rank="1">
-                        <dim index="1" value="nEnergy" />
+                    <dimensions rank="dataRank">
+                        <dim index="1" value="nP" />
+                        <dim index="2" value="nEnergy" />
                     </dimensions>
                 </field>
             </group>
@@ -113,8 +115,9 @@
                     :math:`I`.
                 </doc>
                 <field name="data" type="NX_NUMBER">
-                    <dimensions rank="1">
-                        <dim index="1" value="nEnergy" />
+                    <dimensions rank="dataRank">
+                        <dim index="1" value="nP" />
+                        <dim index="2" value="nEnergy" />
                     </dimensions>
                 </field>
             </group>
@@ -125,8 +128,9 @@
                     (typically a metal foil).
                 </doc>
                 <field name="data" type="NX_NUMBER">
-                    <dimensions rank="1">
-                        <dim index="1" value="nEnergy" />
+                    <dimensions rank="dataRank">
+                        <dim index="1" value="nP" />
+                        <dim index="2" value="nEnergy" />
                     </dimensions>
                 </field>
             </group>

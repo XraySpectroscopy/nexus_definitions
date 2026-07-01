@@ -29,8 +29,21 @@
 		    The symbol(s) listed here will be used below to coordinate datasets
 		    with the same shape.
         </doc>
+        <symbol name="nP">
+            <doc>
+                Number of stacked spectra (scan points). This is the growable
+                first dimension: data could be appended along it during acquisition.
+                It is absent when a single spectrum is stored.
+            </doc>
+        </symbol>
         <symbol name="nEnergy">
             <doc>Number of energy data points</doc>
+        </symbol>
+        <symbol name="dataRank">
+            <doc>
+                Rank of the ``intensity`` field: 1 for a single spectrum
+                ``[nEnergy]`` or 2 for a stack of spectra ``[nP, nEnergy]``.
+            </doc>
         </symbol>
     </symbols>
     <doc>
@@ -82,25 +95,57 @@
                 meant by intensity depends on the acquisition mode, and will be
                 specified by each subclass application definition.
             </doc>
-            <dimensions rank="1">
-                <dim index="1" value="nEnergy" />
+            <dimensions rank="dataRank">
+                <dim index="1" value="nP" />
+                <dim index="2" value="nEnergy" />
             </dimensions>
         </field>
         <field name="intensity_errors" type="NX_FLOAT" units="NX_ANY" optional="true">
             <doc>
                 The errors associated with the intensity of the spectrum.
             </doc>
+            <dimensions rank="dataRank">
+                <dim index="1" value="nP" />
+                <dim index="2" value="nEnergy" />
+            </dimensions>
+        </field>
+        <field name="time" type="NX_FLOAT" units="NX_TIME" optional="true">
+            <doc>
+                Time of each spectrum, relative to ``start_time``.
+            </doc>
             <dimensions rank="1">
-                <dim index="1" value="nEnergy" />
+                <dim index="1" value="nP" />
             </dimensions>
         </field>
         <group type="NXsample">
             <field name="name">
                 <doc>Descriptive name of the sample</doc>
             </field>
+            <field name="temperature" type="NX_FLOAT" units="NX_TEMPERATURE" optional="true">
+                <doc>
+                    Sample temperature.
+                </doc>
+                <dimensions rank="1">
+                    <dim index="1" value="nP" />
+                </dimensions>
+            </field>
         </group>
         <group type="NXdata" optional="true">
-            <doc>Plot of the X-ray absorption intensity versus energy</doc>
+            <doc>
+                Plot of the X-ray absorption intensity versus energy.
+
+                When several spectra are stacked along ``nP`` (a time series, a
+                spatial map, an operando series, ...), the quantity that varies
+                across the stack is stored in its standard NeXus location (for
+                example ``NXsample/temperature``, ``NXsample/electric_field``,
+                an ``NXsample/NXtransformations`` axis, or an ``NXbeam``
+                polarization field) and linked here as an additional axis with
+                its ``AXISNAME_indices`` set to 0, the ``nP`` dimension. The
+                application definition does not enumerate these coordinates: any
+                of them, including ones not listed here, is declared simply by
+                adding the field in its base-class location and wiring it into
+                this group.
+            </doc>
             <link name="energy" target="/NXentry/energy"/>
             <link name="intensity" target="/NXentry/intensity"/>
         </group>
