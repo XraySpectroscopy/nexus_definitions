@@ -168,7 +168,7 @@
                 </doc>
             </field>
         </group>        
-        <group type="NXdata" name="data" optional="true">
+        <group type="NXdata" name="DATA">
             <attribute name="signal" type="NX_CHAR">
                 <doc>Name of the field to plot: the absorption ``intensity``.</doc>
                 <enumeration>
