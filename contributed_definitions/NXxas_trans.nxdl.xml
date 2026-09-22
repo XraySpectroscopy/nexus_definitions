@@ -195,9 +195,15 @@
                     &lt;/NXxas/ENTRY/intensity-field&gt;` from the raw data.
                 </doc>
                 <field name="type">
-                    <doc>Mime content type of the note data field.</doc>
+                    <doc>
+                        Mime content type of the note data field. Use
+                        ``text/x-python`` when the note is runnable code. Use
+                        ``text/plain`` when the note describes the steps in
+                        prose.
+                    </doc>
                     <enumeration>
                         <item value="text/x-python"/>
+                        <item value="text/plain"/>
                     </enumeration>
                 </field>
                 <field name="data" type="NX_CHAR">
