@@ -98,7 +98,7 @@
                     </field>
                 </group>
             </group>
-            <group type="NXdetector" name="i0">
+            <group type="NXdetector" name="i0" recommended="true">
                 <doc>
                     Detector measuring the incident beam intensity
                     :math:`I_0`.
@@ -113,7 +113,7 @@
                     </dimensions>
                 </field>
             </group>
-            <group type="NXdetector" name="itrans">
+            <group type="NXdetector" name="itrans" recommended="true">
                 <doc>
                     Detector measuring the transmitted beam intensity
                     :math:`I`.
