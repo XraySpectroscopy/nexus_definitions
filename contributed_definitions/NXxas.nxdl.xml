@@ -76,9 +76,7 @@
                 data acquired at a beamline or laboratory instrument, and
                 ``false`` for spectra calculated/simulated using a
                 computational tool, reconstructed from a linear combination
-                of reference components, etc. Record finer provenance (for
-                example the simulation code and parameters, or the reference
-                components and their weights for a linear combination) in the
+                of reference components, etc. Record provenance in the
                 :ref:`processing &lt;/NXxas/ENTRY/processing-group&gt;`
                 group.
             </doc>
@@ -187,44 +185,40 @@
         </group>
         <group type="NXprocess" name="processing" optional="true">
             <doc>
-                Description of how :ref:`intensity
-                &lt;/NXxas/ENTRY/intensity-field&gt;` was obtained. For a
-                measured spectrum, it describes the reduction of the raw
-                detector data. For a calculated spectrum, it describes the
-                simulation code and its parameters. When present, it
-                allows to fully reproduce ``intensity``.
+                Provenance of :ref:`intensity
+                &lt;/NXxas/ENTRY/intensity-field&gt;`.
+
+                For measured spectra, include all processing steps from
+                measured data to the reported spectrum. For calculated
+                spectra, describe the calculation. For linear combinations,
+                identify the reference components and their weights.
             </doc>
             <field name="program" type="NX_CHAR" optional="true">
-                <doc>Name of the program used for processing.</doc>
+                <doc>Name of the processing program.</doc>
             </field>
             <field name="version" type="NX_CHAR" optional="true">
-                <doc>Version of the program used for processing.</doc>
+                <doc>Version of the program identified by ``program``.</doc>
             </field>
             <field name="date" type="NX_DATE_TIME" optional="true">
                 <doc>Date and time of processing.</doc>
             </field>
             <group type="NXparameters" name="parameters" optional="true">
                 <doc>
-                    Validated parameters of the processing. For a measured
-                    spectrum, for example energy calibration, deglitching,
-                    incident-beam normalization, dead-time correction, or
-                    scan merging. For a calculated spectrum, the parameters
-                    of the simulation. For a linear combination, the weights
-                    of the reference components. Each parameter should carry
-                    a units attribute where applicable.
+                    Processing parameter values.
+                    Include a ``units`` attribute for each parameter where
+                    applicable.
                 </doc>
             </group>
             <group name="note" type="NXnote" optional="true">
                 <doc>
-                    Code or notes that reproduce the top-level :ref:`intensity
-                    &lt;/NXxas/ENTRY/intensity-field&gt;`.
+                    Instructions for reproducing the spectrum. Identify the
+                    input data and give the processing steps in order.
                 </doc>
                 <field name="type">
                     <doc>
-                        Mime content type of the note data field. Use
-                        ``text/x-python`` when the note is runnable code. Use
-                        ``text/plain`` when the note describes the steps in
-                        prose.
+                        MIME content type of ``data``. Use ``text/x-python``
+                        for Python code. Use ``text/plain`` for a description
+                        of the processing steps.
                     </doc>
                     <enumeration>
                         <item value="text/x-python"/>
@@ -232,7 +226,9 @@
                     </enumeration>
                 </field>
                 <field name="data" type="NX_CHAR">
-                    <doc>The reproduction code or notes.</doc>
+                    <doc>
+                        Note content in the format specified by ``type``.
+                    </doc>
                 </field>
             </group>
         </group>
