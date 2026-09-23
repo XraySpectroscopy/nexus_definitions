@@ -70,6 +70,18 @@
         <field name="end_time" type="NX_DATE_TIME" optional="true">
             <doc>End time of the measurement.</doc>
         </field>
+        <field name="is_experimental" type="NX_BOOLEAN">
+            <doc>
+                Specify if the data comes from an experiment. Use ``true`` for
+                data acquired at a beamline or laboratory instrument, and
+                ``false`` for spectra calculated/simulated using a
+                computational tool, reconstructed from a linear combination
+                of reference components, etc. Record finer provenance (for
+                example the simulation code and parameters, or the reference
+                components and their weights for a linear combination) in an
+                ``NXprocess`` group.
+            </doc>
+        </field>
         <group type="NXelement" name="element">
             <doc>
                 The element being probed by the incident X-rays.
@@ -86,18 +98,6 @@
             </doc>
             <field name="name"></field>
         </group>
-        <field name="is_experimental" type="NX_BOOLEAN">
-            <doc>
-                Specify if the data comes from an experiment. Use ``true`` for
-                data acquired at a beamline or laboratory instrument, and
-                ``false`` for spectra calculated/simulated using a
-                computational tool, reconstructed from a linear combination
-                of reference components, etc. Record finer provenance (for
-                example the simulation code and parameters, or the reference
-                components and their weights for a linear combination) in an
-                ``NXprocess`` group.
-            </doc>
-        </field>
         <field name="energy" type="NX_FLOAT" units="NX_ENERGY">
             <doc>
                 The energy axis of the spectrum.
@@ -150,24 +150,6 @@
                 </dimensions>
             </field>
         </group>
-        <group type="NXsubentry" name="reference" optional="true">
-            <doc>
-                An independent reference spectrum, for example a metal-foil
-                standard used for energy calibration. Store the reference
-                here when it is a complete spectrum in its own right, in
-                particular when it probes a different absorbing element or
-                absorption edge, or when it is measured in a different
-                acquisition mode than the main spectrum (for example a foil
-                measured in transmission while the sample is measured in
-                fluorescence). 
-            </doc>
-            <field name="definition">
-                <doc>
-                    Official NeXus NXDL schema to which this subentry conforms.
-                    Should be an ``NXxas``-family definition.
-                </doc>
-            </field>
-        </group>        
         <group type="NXdata" name="DATA">
             <attribute name="signal" type="NX_CHAR">
                 <doc>Name of the field to plot: the absorption ``intensity``.</doc>
@@ -249,6 +231,24 @@
                     <doc>The reproduction code or notes.</doc>
                 </field>
             </group>
+        </group>
+        <group type="NXsubentry" name="reference" optional="true">
+            <doc>
+                An independent reference spectrum, for example a metal-foil
+                standard used for energy calibration. Store the reference
+                here when it is a complete spectrum in its own right, in
+                particular when it probes a different absorbing element or
+                absorption edge, or when it is measured in a different
+                acquisition mode than the main spectrum (for example a foil
+                measured in transmission while the sample is measured in
+                fluorescence).
+            </doc>
+            <field name="definition">
+                <doc>
+                    Official NeXus NXDL schema to which this subentry conforms.
+                    Should be an ``NXxas``-family definition.
+                </doc>
+            </field>
         </group>
     </group>
 </definition>
