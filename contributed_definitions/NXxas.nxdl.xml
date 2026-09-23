@@ -196,5 +196,59 @@
             <link name="energy" target="/NXentry/energy"/>
             <link name="intensity" target="/NXentry/intensity"/>
         </group>
+        <group type="NXcollection" name="raw_data" optional="true">
+            <doc>
+                Raw data as written by the acquisition software,
+                preserved without modification to allow independent
+                reprocessing.
+            </doc>
+        </group>
+        <group type="NXprocess" name="processing" optional="true">
+            <doc>
+                Description of how :ref:`intensity
+                &lt;/NXxas/ENTRY/intensity-field&gt;` was obtained from the raw
+                detector data. When present, it allows a third party to fully
+                reproduce the data reduction.
+            </doc>
+            <field name="program" type="NX_CHAR" optional="true">
+                <doc>Name of the program used for processing.</doc>
+            </field>
+            <field name="version" type="NX_CHAR" optional="true">
+                <doc>Version of the program used for processing.</doc>
+            </field>
+            <field name="date" type="NX_DATE_TIME" optional="true">
+                <doc>Date and time of processing.</doc>
+            </field>
+            <group type="NXparameters" name="parameters" optional="true">
+                <doc>
+                    Validated parameters of the corrections applied, for
+                    example energy calibration, deglitching, incident-beam
+                    normalization, dead-time correction, or scan merging.
+                    Each parameter should carry a units attribute where
+                    applicable.
+                </doc>
+            </group>
+            <group name="note" type="NXnote" optional="true">
+                <doc>
+                    Code or notes reproducing the top-level :ref:`intensity
+                    &lt;/NXxas/ENTRY/intensity-field&gt;` from the raw data.
+                </doc>
+                <field name="type">
+                    <doc>
+                        Mime content type of the note data field. Use
+                        ``text/x-python`` when the note is runnable code. Use
+                        ``text/plain`` when the note describes the steps in
+                        prose.
+                    </doc>
+                    <enumeration>
+                        <item value="text/x-python"/>
+                        <item value="text/plain"/>
+                    </enumeration>
+                </field>
+                <field name="data" type="NX_CHAR">
+                    <doc>The reproduction code or notes.</doc>
+                </field>
+            </group>
+        </group>
     </group>
 </definition>
